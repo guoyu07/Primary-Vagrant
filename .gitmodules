@@ -18,7 +18,7 @@
 	url = https://github.com/acme/puppet-acme-oh-my-zsh.git
 [submodule "provision/modules/nodejs"]
 	path = provision/modules/nodejs
-	url = git://github.com/willdurand/puppet-nodejs.git
+	url = https://github.com/willdurand/puppet-nodejs.git
 [submodule "provision/modules/vcsrepo"]
 	path = provision/modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
