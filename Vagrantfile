@@ -79,14 +79,6 @@ Vagrant.configure("2") do |config|
 
 	end
 
-	# Configuration options for Hyper-V provider.
-	config.vm.provider :hyperv do |v, override|
-		v.memory = 1024
-		v.cpus = 1
-		override.vm.box = "ericmann/trusty64"
-		override.vm.network :private_network, id: "pv_primary", ip: nil
-	end
-
 	# Don't check for updates with every vagrant up
 	config.vm.box_check_update = false
 

@@ -1,11 +1,1 @@
 config.vm.synced_folder "default-sites", "/var/www/default-sites", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
-
-config.vm.provider :hyperv do |v, override|
-	override.vm.synced_folder "default-sites", "/var/www/default-sites", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-    override.vm.synced_folder "default-sites/wordpress/core", "/var/www/core.wordpress.pv", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-    override.vm.synced_folder "default-sites/wordpress/stable", "/var/www/stable.wordpress.pv", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-    override.vm.synced_folder "default-sites/wordpress/legacy", "/var/www/legacy.wordpress.pv", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-    override.vm.synced_folder "default-sites/wordpress/trunk", "/var/www/trunk.wordpress.pv", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-    override.vm.synced_folder "default-sites/wordpress/content", "/var/www/wordpress/content", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-    override.vm.synced_folder "default-sites/phpmyadmin", "/var/www/phpmyadmin.pv", :owner => "www-data", :mount_options => ["dir_mode=0775","file_mode=0774","forceuid","noperm","nobrl","mfsymlinks"]
-end
