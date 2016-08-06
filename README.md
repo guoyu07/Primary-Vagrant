@@ -1,6 +1,8 @@
 Primary Vagrant
 =============
 
+_Note:_ Primary Vagrant 3.0 is a major upgrade from earlier versions. If you would like to use an older version please clone [the 2.x branch](https://github.com/ChrisWiegman/Primary-Vagrant/tree/2.x) instead.
+
 Primary Vagrant is intended for WordPress plugin, theme, and core development, as well as general PHP development, and can be used as a replacement for local development stacks such as MAMP, XAMPP, and others.
 
 Although [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV) is great (and I still use it for some work), I wanted a few major changes. First, I wanted Apache instead of NGINX and, second, I wanted to use a more comprehensive provisioning tool like Puppet instead of Bash. Using VVV and Puppet as a base, this repository attempts to address these requirements for my own work with a Vagrant configuration that is ready to go for WordPress plugin or theme development.
