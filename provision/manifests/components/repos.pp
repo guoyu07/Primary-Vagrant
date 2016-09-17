@@ -1,13 +1,13 @@
 vcsrepo { '/var/www/default-sites/wordpress/legacy/htdocs/wordpress':
   ensure   => present,
-  revision => '4.5.3',
+  revision => '4.5.4',
   provider => git,
   source   => 'https://github.com/WordPress/WordPress.git',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/stable/htdocs/wordpress':
   ensure   => present,
-  revision => '4.6',
+  revision => '4.6.1',
   provider => git,
   source   => 'https://github.com/WordPress/WordPress.git',
 }
@@ -26,7 +26,7 @@ vcsrepo { '/var/www/default-sites/wordpress/core/wordpress':
 
 vcsrepo { '/var/www/default-sites/phpmyadmin/phpmyadmin':
   ensure   => present,
-  revision => 'RELEASE_4_6_3',
+  revision => 'RELEASE_4_6_4',
   provider => git,
   source   => 'https://github.com/phpmyadmin/phpmyadmin.git',
 } ->
