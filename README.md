@@ -32,6 +32,7 @@ The repository contains a Vagrant configuration with Puppet modules that will co
 * [Git](http://git-scm.com)
 * [Subversion](https://subversion.apache.org)
 * [Memcached](https://memcached.org/)
+* [Redis](http://redis.io/)
 
 ## Contributors
 
