@@ -1,4 +1,7 @@
-class { 'mysql::server': }
+class { 'mysql::server':
+  root_password           => 'password',
+  remove_default_accounts => true,
+}
 
 mysql_database { 'stable.wordpress.pv':
   ensure  => 'present',
@@ -33,19 +36,4 @@ mysql_database { 'tests.core.wordpress.pv':
   charset => 'utf8',
   collate => 'utf8_general_ci',
   require => Class['mysql::server'],
-}
-
-mysql_user { 'username@localhost':
-  ensure        => 'present',
-  require       => Class['mysql::server'],
-  password_hash => mysql_password(password),
-}
-
-mysql_grant { 'username@localhost/*.*':
-  ensure     => 'present',
-  options    => ['GRANT'],
-  privileges => ['ALL'],
-  table      => '*.*',
-  user       => 'username@localhost',
-  require    => Class['mysql::server'],
 }
