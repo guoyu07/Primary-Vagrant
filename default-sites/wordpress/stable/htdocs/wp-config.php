@@ -19,7 +19,7 @@
 define( 'DB_NAME', 'stable.wordpress.pv' );
 
 /** MySQL database username */
-define( 'DB_USER', 'username' );
+define( 'DB_USER', 'root' );
 
 /** MySQL database password */
 define( 'DB_PASSWORD', 'password' );
