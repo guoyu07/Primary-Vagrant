@@ -4,10 +4,6 @@ class { 'apache':
 
 include apache::ssl
 
-apache::dotconf { 'fqdn':
-  content => template( '/vagrant/provision/lib/conf/fqdn.conf.erb' )
-}
-
 apache::module { 'rewrite': }
 apache::module { 'cache': }
 apache::module { 'cgid': }
