@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 	# This box is provided directly by Canonical and is updated almost nightly. Currently it is
 	# configured to use Ubuntu 14.04 x64. For a full list of boxes provided by Canonical visit
 	# http://cloud-images.ubuntu.com/vagrant/
-	config.vm.box = "ubuntu/xenial64"
+	config.vm.box = "bento/ubuntu-16.04"
 
 	config.vm.hostname = "pv"
 
