@@ -20,6 +20,10 @@ package { 'memcached':
   ensure => 'installed'
 }
 
+package { 'redis-server':
+  ensure => 'installed'
+}
+
 class { 'ohmyzsh': }
 
 ohmyzsh::install { 'vagrant': }

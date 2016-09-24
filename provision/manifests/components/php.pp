@@ -10,6 +10,7 @@ class { '::php':
     memcache     => { },
     mbstring     => { },
     mcrypt       => { },
+    redis        => { },
     xdebug       => {
       zend            => true,
       provider        => 'pecl',
