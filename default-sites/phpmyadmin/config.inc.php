@@ -27,7 +27,7 @@ $i = 0;
 $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['user']          = 'root';
-$cfg['Servers'][$i]['password']      = ''; // use here your password
+$cfg['Servers'][$i]['password']      = 'password'; // use here your password
 $cfg['Servers'][$i]['auth_type']     = 'config';
 /* Server parameters */
 $cfg['Servers'][$i]['host'] = 'localhost';
