@@ -157,9 +157,7 @@ Due to the structure of the PHP repositories used changing PHP versions from 7 i
 
 #### Database Access
 
-You can access the database via ssh tunnel into the machine using the *pv* hostname, the username *vagrant*, the password *vagrant* for ssh, and the username *root* without a password for MySQL.
-
-In addition to the *root* MySQL account the account *username* with the password *password* has also been created and has been granted all privileges.
+You can access the database via ssh tunnel into the machine using the *pv* hostname, the username *vagrant*, the password *vagrant* for ssh, and the username *root* without the password *password* for MySQL.
 
 #### Postfix Configuration
 
