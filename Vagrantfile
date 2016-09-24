@@ -157,5 +157,4 @@ Vagrant.configure("2") do |config|
 			run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy"
 		end
 	end
-
 end
