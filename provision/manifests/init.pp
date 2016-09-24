@@ -12,5 +12,3 @@ import 'components/php.pp'
 import 'components/mysql.pp'
 import 'components/www.pp'
 import 'components/wordpress.pp'
-
-import '/vagrant/user-data/vhosts/*.pp'
