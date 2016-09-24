@@ -107,9 +107,13 @@ Vagrant.configure("2") do |config|
 	# Provisioning
 	#
 	# Process one or more provisioning scripts depending on the existence of custom files.
-	#
-	# Provisioning uses the Puppet configuration tool (http://puppetlabs.com/). This tool
-	# relies on modules in the modules/ folder which are configures in manifests/default.pp.
+	config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'" # Prevents stdin error for Ubuntu
+
+    # Make sure puppet is on the box
+	config.vm.provision "shell",
+        inline: "apt-get install -y puppet"
+
+    # Run the system setup on the first vagrant up.
 	config.vm.provision "puppet" do |puppet|
 		puppet.manifests_path    = "provision/manifests"
 		puppet.manifest_file     = "init.pp"
@@ -118,6 +122,7 @@ Vagrant.configure("2") do |config|
 		puppet.hiera_config_path = "provision/manifests/hiera.yaml"
 	end
 
+    # Run provisioning required every time we startup the box.
 	config.vm.provision "puppet", run: "always" do |puppet|
        	puppet.manifests_path    = "provision/manifests"
        	puppet.manifest_file     = "repeat.pp"
