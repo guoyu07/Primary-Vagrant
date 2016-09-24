@@ -34,7 +34,7 @@ class { 'nodejs':
 }
 
 file { '.zshrc':
-  path    => '/home/ubuntu/.zshrc',
+  path    => '/home/vagrant/.zshrc',
   ensure  => file,
   owner   => 'vagrant',
   group   => 'vagrant',
