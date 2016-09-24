@@ -138,21 +138,21 @@ Vagrant.configure("2") do |config|
 	# to create backups of all current databases. This can be overridden with custom
 	# scripting. See the individual files in config/homebin/ for details.
 	if defined? VagrantPlugins::Triggers
-		config.trigger.before :up, :stdout => true do
+		config.trigger.before :up do
         	system('./provision/bin/repo_init.sh')
         	Dir[File.join( 'user-data/sites', '**', 'pv-init.sh')].each do |file|
         	    print file
             	system(file)
             end
         end
-		config.trigger.before :halt, :stdout => true do
-			run "vagrant ssh -c '/vagrant/provision/lib/bin/vagrant_halt'"
+		config.trigger.before :halt do
+			run_remote "bash /vagrant/provision/lib/bin/vagrant_halt"
 		end
-		config.trigger.before :suspend, :stdout => true do
-			run "vagrant ssh -c '/vagrant/provision/lib/bin/vagrant_suspend'"
+		config.trigger.before :suspend do
+		    run_remote "bash /vagrant/provision/lib/bin/vagrant_suspend"
 		end
-		config.trigger.before :destroy, :stdout => true do
-			run "vagrant ssh -c '/vagrant/provision/lib/bin/vagrant_destroy'"
+		config.trigger.before :destroy do
+			run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy"
 		end
 	end
 
