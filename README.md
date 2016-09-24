@@ -9,7 +9,7 @@ Although [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/
 
 The repository contains a Vagrant configuration with Puppet modules that will configure the following goodies:
 
-* Ubuntu 14.04 LTS
+* Ubuntu 16.04 LTS
 * [Apache](http://httpd.apache.org)
 * [PHP](http://php.net) 7.0
 * [MySQL](https://www.mysql.com)
