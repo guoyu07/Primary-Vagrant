@@ -33,7 +33,7 @@ vcsrepo { '/var/www/default-sites/phpmyadmin/phpmyadmin':
 file { '/var/www/default-sites/phpmyadmin/phpmyadmin/config.inc.php':
   ensure => 'link',
   owner  => 'www-data',
-  group  => 'vagrant',
+  group  => 'ubuntu',
   target => '/var/www/default-sites/phpmyadmin/config.inc.php',
 }
 

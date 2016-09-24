@@ -26,7 +26,7 @@ package { 'redis-server':
 
 class { 'ohmyzsh': }
 
-ohmyzsh::install { 'vagrant': }
+ohmyzsh::install { 'ubuntu': }
 
 class { 'nodejs':
   version      => 'latest',
@@ -34,16 +34,9 @@ class { 'nodejs':
 }
 
 file { '.zshrc':
-  path    => '/home/vagrant/.zshrc',
+  path    => '/home/ubuntu/.zshrc',
   ensure  => file,
-  owner   => 'vagrant',
-  group   => 'vagrant',
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
   source  => '/vagrant/provision/lib/conf/.zshrc',
-}
-
-file { 'sudoers':
-  path    => '/etc/sudoers',
-  ensure  => file,
-  mode    => '440',
-  source  => '/vagrant/provision/lib/conf/sudoers',
 }
