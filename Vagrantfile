@@ -76,7 +76,6 @@ Vagrant.configure("2") do |config|
 		# set auto_update to false, if you do NOT want to check the correct
 		# additions version when booting this machine
 		config.vbguest.auto_update = true
-
 	end
 
 	# Don't check for updates with every vagrant up
@@ -115,23 +114,21 @@ Vagrant.configure("2") do |config|
 
     # Run the system setup on the first vagrant up.
 	config.vm.provision "puppet" do |puppet|
-		puppet.manifests_path    = "provision/manifests"
-		puppet.manifest_file     = "init.pp"
+		puppet.manifests_path    = "provision"
+		puppet.manifest_file     = "init"
 		puppet.module_path       = "provision/modules"
 		puppet.facter            = { "fqdn" => "pv" }
-		puppet.hiera_config_path = "provision/manifests/hiera.yaml"
+		puppet.hiera_config_path = "provision/hiera.yaml"
 	end
 
     # Run provisioning required every time we startup the box.
-	config.vm.provision "puppet", run: "always" do |puppet|
-       	puppet.manifests_path    = "provision/manifests"
-       	puppet.manifest_file     = "repeat.pp"
-       	puppet.module_path       = "provision/modules"
-       	puppet.facter            = { "fqdn" => "pv" }
-     	puppet.hiera_config_path = "provision/manifests/hiera.yaml"
+    config.vm.provision "puppet", run: "always" do |puppet|
+        puppet.manifests_path    = "user-data/"
+        puppet.manifest_file     = "vhosts"
+        puppet.module_path       = "provision/modules"
+        puppet.facter            = { "fqdn" => "pv" }
+        puppet.hiera_config_path = "provision/hiera.yaml"
     end
-
-
 
 	# Vagrant Triggers
 	#

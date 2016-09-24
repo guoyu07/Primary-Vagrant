@@ -1,12 +1,4 @@
-import 'helpers/*.pp'
-
 group { 'puppet': ensure => present }
 
 Exec { path => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/', '/vagrant/provision/bin/' ] }
 File { owner => 0, group => 0, mode => 0644 }
-
-include '::php'
-include '::apache'
-include '::mysql::server'
-
-import '/vagrant/user-data/vhosts/*.pp'
