@@ -111,7 +111,7 @@ Vagrant.configure("2") do |config|
 
     # Make sure puppet is on the box
 	config.vm.provision "shell",
-        inline: "apt-get install -y puppet"
+        inline: "apt-get install -y software-properties-common puppet"
 
     # Run the system setup on the first vagrant up.
 	config.vm.provision "puppet" do |puppet|
