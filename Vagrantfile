@@ -10,9 +10,7 @@ Vagrant.configure("2") do |config|
 
 	# Default Ubuntu Box
 	#
-	# This box is provided directly by Canonical and is updated almost nightly. Currently it is
-	# configured to use Ubuntu 14.04 x64. For a full list of boxes provided by Canonical visit
-	# http://cloud-images.ubuntu.com/vagrant/
+	# This box is provided directly by Bento and is updated regularly.
 	config.vm.box = "bento/ubuntu-16.04"
 
 	config.vm.hostname = "pv"
@@ -90,7 +88,7 @@ Vagrant.configure("2") do |config|
 	# virtual machine is destroyed with `vagrant destroy`, your files will remain in your local
 	# environment.
 
-	# Custom Mappings - POSSIBLY UNSTABLE
+	# Custom Mappings
 	#
 	# Use this to insert your own (and possibly rewrite) Vagrant config lines. Helpful
 	# for mapping additional drives. If a file 'pv-mappings' exists in the www folder or any of its subfolders
