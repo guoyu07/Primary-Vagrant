@@ -1,15 +1,17 @@
 #!/bin/bash
-#
-# Original from Varying Vagrant Vagrants (https://github.com/varying-vagrant-vagrants/vvv)
-#
-# Create individual SQL files for each database. These files
-# are imported automatically during an initial provision if
-# the databases exist per the import-sql.sh process.
-mysql --user=root -e 'show databases' | \
-grep -v -F "information_schema" | \
-grep -v -F "performance_schema" | \
-grep -v -F "mysql" | \
-grep -v -F "test" | \
-grep -v -F "Database" | \
-grep -v -F "sys" | \
-while read dbname; do mysqldump -uroot "$dbname" > /vagrant/user-data/database/"$dbname".sql && echo "Database $dbname backed up..."; done
+
+USER="username"
+PASSWORD="password"
+OUTPUT="/vagrant/user-data/database"
+
+rm "$OUTPUT/*gz" > /dev/null 2>&1
+
+databases=`mysql --user=$USER --password=$PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
+
+for db in $databases; do
+    if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != "test" ]] && [[ "$db" != "Database" ]] && [[ "$db" != _* ]] ; then
+        echo "Dumping database: $db"
+        mysqldump --force --opt --user=$USER --password=$PASSWORD --databases $db > $OUTPUT/`date +%Y%m%d`.$db.sql
+        gzip -f $OUTPUT/`date +%Y%m%d`.$db.sql
+    fi
+done
