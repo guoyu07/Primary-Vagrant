@@ -34,10 +34,10 @@ Vagrant.configure("2") do |config|
 	# enter a password for Vagrant to access your hosts file.
 	#
 	# By default, we'll include the domains set up by Primary Vagrant through the pv-hosts file
-	# located in the www/ directory.
+	# located in the default-sites/ directory.
 	#
 	# Other domains can be automatically added by including a pv-hosts file containing
-	# individual domains separated by whitespace in subdirectories of www/.
+	# individual domains separated by whitespace in subdirectories of user-data/ and user-date/sites/.
 	if defined?(VagrantPlugins::Ghost)
 		# Recursively fetch the paths to all pv-hosts files under the www/ directory.
 		paths = Dir[File.join(vagrant_dir, 'default-sites', 'pv-hosts')] + Dir[File.join(vagrant_dir, 'user-data', 'pv-hosts')]+ Dir[File.join(vagrant_dir, 'user-data', 'sites', '**', 'pv-hosts')]
