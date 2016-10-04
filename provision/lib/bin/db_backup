@@ -6,12 +6,14 @@ OUTPUT="/vagrant/user-data/database"
 
 rm "$OUTPUT/*gz" > /dev/null 2>&1
 
-databases=`mysql --user=$USER --password=$PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
+export MYSQL_PWD=$PASSWORD # Don't try this at home.
+
+databases=`mysql --user=$USER -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
 
 for db in $databases; do
-    if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != "test" ]] && [[ "$db" != "Database" ]] && [[ "$db" != _* ]] ; then
+    if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "sys" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != "test" ]] && [[ "$db" != "Database" ]] && [[ "$db" != _* ]] ; then
         echo "Dumping database: $db"
-        mysqldump --force --opt --user=$USER --password=$PASSWORD --databases $db > $OUTPUT/`date +%Y%m%d`.$db.sql
+        mysqldump --force --opt --user=$USER --databases $db > $OUTPUT/`date +%Y%m%d`.$db.sql
         gzip -f $OUTPUT/`date +%Y%m%d`.$db.sql
     fi
 done
