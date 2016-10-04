@@ -143,32 +143,21 @@ mysql_database { 'mysite.pv':
 
 *Note: I've provided a top-level wildcard SSL certificate. No further SSL certificate should be needed.
 
-Finally, and you can do this two ways... If you've created your site as a folder in the Primary Vagrant www folder just add a file callend *pv-hosts* to it that includes the domain name(s) (one per line) for your project. If your site is outside of the Primary Vagrant folder I would recommend creating *www/my-sites/pv-hosts* to hold the domain names. This will make sure you can access your sites by whatever domain names you need.
+Finally, and you can do this two ways... If you've created your site as a folder in the Primary Vagrant user-data/sites/ folder just add a file callend *pv-hosts* to it that includes the domain name(s) (one per line) for your project. If your site is outside of the Primary Vagrant folder I would recommend creating *user-data/pv-hosts* to hold the domain names. This will make sure you can access your sites by whatever domain names you need.
 
 After the configuration above has been added, simply run `vagrant halt` and then `vagrant up` to trigger the changes and host file updates.
 
 ### Changing configuration options
 
-The default installation configuration is found in *provision/manifests/init.pp*. While you could edit this if you like I would, instead, recommend adding any additional configuration to your virtualhosts file such as *user-data/vhosts/custom.pp*
-
-#### Change PHP Versions
-
-Due to the structure of the PHP repositories used changing PHP versions from 7 is not currently supported (but should be soon).
+The default installation configuration is found in *provision/init/*. While you could edit these files if you like I would, instead, recommend adding any additional configuration to your virtualhosts file such as *user-data/vhosts/custom.pp*
 
 #### Database Access
 
-You can access the database via ssh tunnel into the machine using the *pv* hostname, the username *vagrant*, the password *vagrant* for ssh, and the username *root* without the password *password* for MySQL.
+You can access the database via ssh tunnel into the machine using the *ouroboros* hostname, the username *vagrant*, the password *vagrant* for ssh, and the username *username* with the password *password* for MySQL.
 
 #### Postfix Configuration
 
 Postfix is configured and set to use your host computer as a mail relay. To receive messages you can use the built in [MailHog installation](http://pv:8025) (this will prevent your real SMTP mail server and mailbox from getting too much abuse).
-
-#### WP Test Data
-WP Test can be installed via the instructions at (https://github.com/manovotny/wptest). Test data is found in *[Primary Vagrant Folder]/www/default/wordpress/content/wptest* on your host machine.
-
-#### WordPress VIP Development
-
-Looking to work on WordPress VIP sites? I've got a pre-configured site add-on that will take care of it all for you. Check out [Primary Vagrant VIP](https://github.com/ChrisWiegman/Primary-Vagrant-VIP)
 
 #### node.js
 
@@ -185,7 +174,7 @@ package { 'ungit':
 
 ### Debugging Code ###
 
-Primary Vagrant comes pre-configured with two awesome tools for helping debug your code. The first is [Xdebug](http://xdebug.org/) and the second is [PHP_Codesniffer](https://github.com/squizlabs/PHP_CodeSniffer) (which comes complete with the [WordPress coding standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) already pre-configured). While configuration is dependant on the code editor you use here are some notes that might help you get started with them.
+Ouroboros comes pre-configured with two awesome tools for helping debug your code. The first is [Xdebug](http://xdebug.org/) and the second is [PHP_Codesniffer](https://github.com/squizlabs/PHP_CodeSniffer) (which comes complete with the [WordPress coding standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) already pre-configured). While configuration is dependant on the code editor you use here are some notes that might help you get started with them.
 
 * Xdebug uses VAGRANT_DEBUG as its IDE key
 * Many modern tools will let you access both of these tools easily with just a bit of configuration. For example, [here's a great post on using remote debugging in PHPStorm.](http://blog.jetbrains.com/phpstorm/2015/07/remote-tools-via-remote-php-interpreters-in-phpstorm-9/)
@@ -194,24 +183,6 @@ Primary Vagrant comes pre-configured with two awesome tools for helping debug yo
 You can now also turn xdebug on or off completely with the commands `xon` and `xoff`. This should help speed up complex composer or other operations.
 
 For debugging APIs or any other situation where sending a cookie with your request isn't ideal you can turn on auto-listening for xdebug in which case it will try to connect automatically, even without a cookie. To do this simply use the commands `xlon` and `xloff` to enable or disable auto-remote. Note that this is disabled by default.
-
-###Keep your fork up to date with the PV `upstream/master` repo
-
-* Configure a remote that points to the upstream repository in Git: `git remote add upstream https://github.com/ChrisWiegman/Primary-Vagrant.git`
-
-See: https://help.github.com/articles/configuring-a-remote-for-a-fork
-
-The following commands should bring you up to speed:
-* `git checkout <localbranch>`
-* `git stash` -- save local changes
-* `git pull https://github.com/ChrisWiegman/Primary-Vagrant.git upstream/master`
-* `git submodule update --recursive`
-* `git stash pop` -- saved local changes are available to be committed
-* Use `git merge tool` if you have any conflicts
-
-See: https://www.atlassian.com/git/tutorials/syncing/git-pull
-
-Now, you will be free to PR against Primary Vagrant.
 
 ### Contributions
 

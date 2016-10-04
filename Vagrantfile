@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
 	# Other domains can be automatically added by including a pv-hosts file containing
 	# individual domains separated by whitespace in subdirectories of user-data/ and user-date/sites/.
 	if defined?(VagrantPlugins::Ghost)
-		# Recursively fetch the paths to all pv-hosts files under the www/ directory.
+		# Recursively fetch the paths to all pv-hosts files under the default-sites/, user-data/ and user-data/sites/ directories.
 		paths = Dir[File.join(vagrant_dir, 'default-sites', 'pv-hosts')] + Dir[File.join(vagrant_dir, 'user-data', 'pv-hosts')]+ Dir[File.join(vagrant_dir, 'user-data', 'sites', '**', 'pv-hosts')]
 
 		# Parse the found pv-hosts files for host names.
@@ -91,7 +91,7 @@ Vagrant.configure("2") do |config|
 	# Custom Mappings
 	#
 	# Use this to insert your own (and possibly rewrite) Vagrant config lines. Helpful
-	# for mapping additional drives. If a file 'pv-mappings' exists in the www folder or any of its subfolders
+	# for mapping additional drives. If a file 'pv-mappings' exists in the user-data/ folder or user-data/sites or any of its subfolders
 	# it will be evaluated as ruby inline as it loads.
 	if File.exists?(File.join(vagrant_dir,'user-data', 'pv-mappings')) then
 		eval(IO.read(File.join(vagrant_dir, 'user-data', 'pv-mappings')), binding)
