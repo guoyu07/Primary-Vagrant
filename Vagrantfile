@@ -129,30 +129,54 @@ Vagrant.configure("2") do |config|
     end
 
 	# Vagrant Triggers
-	#
-	# If the vagrant-triggers plugin is installed, we can run various scripts on Vagrant
-	# state changes like `vagrant up`, `vagrant halt`, `vagrant suspend`, and `vagrant destroy`
-	#
-	# These scripts are run on the host machine, so we use `vagrant ssh` to tunnel back
-	# into the VM and execute things. By default, each of these scripts calls db_backup
-	# to create backups of all current databases. This can be overridden with custom
-	# scripting. See the individual files in config/homebin/ for details.
-	if defined? VagrantPlugins::Triggers
-		config.trigger.before :up do
-        	system('./provision/bin/repo_init.sh')
-        	Dir[File.join( 'user-data/sites', '**', 'pv-init.sh')].each do |file|
-        	    print file
-            	system(file)
+    #
+    # If the vagrant-triggers plugin is installed, we can run various scripts on Vagrant
+    # state changes like `vagrant up`, `vagrant halt`, `vagrant suspend`, and `vagrant destroy`
+    #
+    # These scripts are run on the host machine, so we use `vagrant ssh` to tunnel back
+    # into the VM and execute things. By default, each of these scripts calls db_backup
+    # to create backups of all current databases. This can be overridden with custom
+    # scripting. See the individual files in provision/lib/bin for details.
+    if defined? VagrantPlugins::Triggers
+        config.trigger.before :up do
+            system('./provision/bin/repo_init.sh')
+            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-init.sh')) then
+                system('./user-data/pv-init.sh')
+            end
+            Dir[File.join( 'user-data/sites', '**', 'pv-init.sh')].each do |file|
+                print file
+                system(file)
             end
         end
-		config.trigger.before :halt do
-			run_remote "bash /vagrant/provision/lib/bin/vagrant_halt"
-		end
-		config.trigger.before :suspend do
-		    run_remote "bash /vagrant/provision/lib/bin/vagrant_suspend"
-		end
-		config.trigger.before :destroy do
-			run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy"
-		end
-	end
+        config.trigger.before :halt do
+            run_remote "bash /vagrant/provision/lib/bin/vagrant_halt"
+            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-halt.sh')) then
+                system('./user-data/pv-halt.sh')
+            end
+            Dir[File.join( 'user-data/sites', '**', 'pv-halt.sh')].each do |file|
+                print file
+                system(file)
+            end
+        end
+        config.trigger.before :suspend do
+            run_remote "bash /vagrant/provision/lib/bin/vagrant_suspend"
+            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-suspend.sh')) then
+                system('./user-data/pv-suspend.sh')
+            end
+            Dir[File.join( 'user-data/sites', '**', 'pv-suspend.sh')].each do |file|
+                print file
+                system(file)
+            end
+        end
+        config.trigger.before :destroy do
+            run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy"
+            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-destroy.sh')) then
+                system('./user-data/pv-destroy.sh')
+            end
+            Dir[File.join( 'user-data/sites', '**', 'pv-destroy.sh')].each do |file|
+                print file
+                system(file)
+            end
+        end
+    end
 end
