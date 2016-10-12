@@ -1,6 +1,11 @@
 class { 'mysql::server':
   root_password           => 'password',
   remove_default_accounts => true,
+  override_options        => {
+    'mysqld' => {
+      'sql_mode' => 'NO_ENGINE_SUBSTITUTION',
+    }
+  }
 }
 
 mysql_database { 'stable.wordpress.pv':
