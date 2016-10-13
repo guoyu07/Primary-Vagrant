@@ -24,6 +24,14 @@ package { 'redis-server':
   ensure => 'installed'
 }
 
+package { 'python' :
+  ensure => 'installed'
+}
+
+package { 'graphviz' :
+  ensure => 'installed'
+}
+
 class { 'ohmyzsh': }
 
 ohmyzsh::install { 'vagrant': }
