@@ -102,7 +102,7 @@ The following websites come pre-configured in the system:
 
 ### Configure Additional Sites
 
-First, create a file called pv-mappings in the user-data directory. This will map any sites you create to the appropriate folder on PV.
+First, create a file called `pv-mappings` in the user-data directory. This will map any sites you create to the appropriate folder on PV.
 
 Example Mapping:
 
@@ -143,9 +143,11 @@ mysql_database { 'mysite.pv':
 
 *Note: I've provided a top-level wildcard SSL certificate. No further SSL certificate should be needed.
 
-Finally, and you can do this two ways... If you've created your site as a folder in the Primary Vagrant user-data/sites/ folder just add a file callend *pv-hosts* to it that includes the domain name(s) (one per line) for your project. If your site is outside of the Primary Vagrant folder I would recommend creating *user-data/pv-hosts* to hold the domain names. This will make sure you can access your sites by whatever domain names you need.
+Finally, and you can do this two ways... 
+* If you've created your site **inside** of the Primary Vagrant `user-data/sites/` folder, just add a file called `pv-hosts` to it that includes the domain name(s) (one per line) for your project. 
+* If your site is **outside** of the Primary Vagrant folder I would recommend creating `user-data/pv-hosts` to hold the domain names. This will make sure you can access your sites by whatever domain names you need.
 
-After the configuration above has been added, simply run `vagrant halt` and then `vagrant up` to trigger the changes and host file updates.
+After the configuration above has been added, simply run `vagrant halt && vagrant up` to trigger the changes and host file updates.
 
 ### Changing configuration options
 
