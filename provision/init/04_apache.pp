@@ -16,8 +16,9 @@ apache::module { 'proxy_fcgi': }
 apache::module { 'alias': }
 
 apache::vhost { 'pv':
-  docroot  => '/var/www/default-sites/pv',
-  template => '/vagrant/provision/lib/conf/vhost.conf.erb',
+  serveraliases => 'pv.io',
+  docroot       => '/var/www/default-sites/pv',
+  template      => '/vagrant/provision/lib/conf/vhost.conf.erb',
 }
 
 apache::vhost { 'phpmyadmin.pv':
