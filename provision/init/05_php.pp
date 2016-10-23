@@ -47,9 +47,10 @@ class { '::php':
 }
 
 exec { 'php_codesniffer':
-  command => 'pear install PHP_CodeSniffer',
+  command => '/usr/local/bin/composer global require "squizlabs/php_codesniffer=*" && ln -s /home/vagrant/.composer/vendor/bin/phpcs /usr/bin/phpcs && ln -s /home/vagrant/.composer/vendor/bin/phpcbf /usr/bin/phpcbf',
   require => Class['php'],
-  creates => '/usr/bin/phpcs',
+  environment => ["COMPOSER_HOME=/home/vagrant/.composer"],
+  creates => '/home/vagrant/.composer/vendor/bin/phpcs',
 }
 
 exec { 'wp_code_standards':
