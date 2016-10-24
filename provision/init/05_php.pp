@@ -44,15 +44,13 @@ class { '::php':
     'PHP/upload_max_filesize' => '100M',
     'PHP/max_execution_time'  => '90',
   },
-}
-
+} ->
 exec { 'php_codesniffer':
   command => '/usr/local/bin/composer global require "squizlabs/php_codesniffer=*" && ln -s /home/vagrant/.composer/vendor/bin/phpcs /usr/bin/phpcs && ln -s /home/vagrant/.composer/vendor/bin/phpcbf /usr/bin/phpcbf',
   require => Class['php'],
   environment => ["COMPOSER_HOME=/home/vagrant/.composer"],
   creates => '/home/vagrant/.composer/vendor/bin/phpcs',
-}
-
+} ->
 exec { 'wp_code_standards':
   command => 'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /var/wpcs && phpcs --config-set installed_paths /var/wpcs',
   require => Class['php'],
