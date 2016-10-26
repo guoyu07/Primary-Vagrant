@@ -46,10 +46,9 @@ class { '::php':
   },
 } ->
 exec { 'php_codesniffer':
-  command => '/usr/local/bin/composer global require "squizlabs/php_codesniffer=*" && ln -s /home/vagrant/.composer/vendor/bin/phpcs /usr/bin/phpcs && ln -s /home/vagrant/.composer/vendor/bin/phpcbf /usr/bin/phpcbf',
+  command => 'git clone https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && cd /var/phpcs && pear install package.xml',
   require => Class['php'],
-  environment => ["COMPOSER_HOME=/home/vagrant/.composer"],
-  creates => '/home/vagrant/.composer/vendor/bin/phpcs',
+  creates => '/usr/bin/phpcs',
 } ->
 exec { 'wp_code_standards':
   command => 'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /var/wpcs && phpcs --config-set installed_paths /var/wpcs',
