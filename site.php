@@ -16,7 +16,9 @@ $long_args  = array(
 	'alias::', // Server alias(es).
 	'root::', // The root directory to map.
 	'apacheroot::', // The apache docroot.
-	'noprovsion::', //Set the flag to prevent a reload/provision.
+	'noprovsion::', // Set the flag to prevent a reload/provision.
+	'nodatabase::', // Set to prevent creation of a database.
+	'leavfiles::', // Set to prevent deletion of all files when removing a site.
 );
 
 $options = getopt( $short_args, $long_args );
