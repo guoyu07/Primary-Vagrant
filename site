@@ -10,8 +10,8 @@
 $short_args = 'd::';  // Primary domain name.
 $long_args  = array(
 	'list::', // List existing sites.
-	'create::', // Use to create a site.
-	'delete::', // Use to delete a site.
+	'create-site::', // Use to create a site.
+	'delete-site::', // Use to delete a site.
 	'domain::', // Primary domain name.
 	'database::', // Override database name.
 	'alias::', // Server alias(es).
@@ -25,9 +25,9 @@ $long_args  = array(
 $options = getopt( $short_args, $long_args );
 
 // Find out if we're creating, listing or deleting a site.
-if ( ! isset( $options['create'] ) && ! isset( $options['list'] ) && ! isset( $options['delete'] ) && ! isset( $options['help'] ) ) {
+if ( ! isset( $options['create-site'] ) && ! isset( $options['list'] ) && ! isset( $options['delete-site'] ) && ! isset( $options['help'] ) ) {
 
-	fwrite( STDERR, 'You must specify "create," "delete," "list" or "help" when using this command.' . PHP_EOL );
+	fwrite( STDERR, 'You must specify "create-site," "delete-site," "list" or "help" when using this command.' . PHP_EOL );
 	exit( 1 );
 
 }
@@ -43,7 +43,7 @@ if ( isset( $options['list'] ) ) {
 }
 
 // Setup variables common to both site creation and site deletion.
-if ( isset( $options['create'] ) || isset( $options['delete'] ) ) {
+if ( isset( $options['create-site'] ) || isset( $options['delete-site'] ) ) {
 
 	$needs_provision = false; // A flag to prevent wasting time provisioning if it isn't needed.
 
@@ -72,8 +72,8 @@ if ( isset( $options['create'] ) || isset( $options['delete'] ) ) {
 
 }
 
-// Execute create functions.
-if ( isset( $options['create'] ) ) {
+// Execute create-site functions.
+if ( isset( $options['create-site'] ) ) {
 
 	// Create the directory and verify the vhost file doesn't already exists or die if it already exists.
 	if ( ! is_dir( $options['site_folder'] ) && ! file_exists( $vhost_file ) ) {
@@ -212,8 +212,8 @@ if ( isset( $options['create'] ) ) {
 
 }
 
-// Execute delete functions.
-if ( isset( $options['delete'] ) ) {
+// Execute delete-site functions.
+if ( isset( $options['delete-site'] ) ) {
 
 	// Delete the site configuration.
 	if ( file_exists( $vhost_file ) ) {
