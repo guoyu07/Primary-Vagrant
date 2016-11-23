@@ -210,22 +210,55 @@ if ( isset( $options['create'] ) ) {
 if ( isset( $options['delete'] ) ) {
 
 	// Delete the site configuration.
-	unlink( $vhost_file );
-	echo 'Deleted ' . $vhost_file . PHP_EOL;
+	if ( file_exists( $vhost_file ) ) {
+
+		unlink( $vhost_file );
+		echo 'Deleted ' . $vhost_file . PHP_EOL;
+
+	} else {
+
+		echo 'The virtualhost configuration has already been deleted. No action taken.' . PHP_EOL;
+
+	}
 
 	if ( isset( $options['deletefiles'] ) ) { // Remove entire site folder.
 
-		delete_directory( $options['site_folder'] );
-		echo 'Deleted site folder.' . PHP_EOL;
+		if ( is_dir( $options['site_folder'] ) ) {
+			
+			delete_directory( $options['site_folder'] );
+			echo 'Deleted site folder.' . PHP_EOL;
+
+		} else {
+
+			echo 'The site folder has already been deleted. No action taken.' . PHP_EOL;
+
+		}
 
 	} else { // Only remove Primary Vagrant files.
 
-		unlink( $options['site_folder'] . '/pv-hosts' );
-		echo 'Deleted ' . $options['site_folder'] . '/pv-hosts' . PHP_EOL;
+		// Delete pv-hosts if it exists.
+		if ( file_exists( $options['site_folder'] . '/pv-hosts' ) ) {
 
-		unlink( $options['site_folder'] . '/pv-mappings' );
-		echo 'Deleted ' . $options['site_folder'] . '/pv-mappings' . PHP_EOL;
+			unlink( $options['site_folder'] . '/pv-hosts' );
+			echo 'Deleted ' . $options['site_folder'] . '/pv-hosts' . PHP_EOL;
 
+		} else {
+
+			echo 'The pv-hosts file has already been deleted. No action taken.' . PHP_EOL;
+
+		}
+
+		// Delete pv-mappings if it exists.
+		if ( file_exists( $options['site_folder'] . '/pv-mappings' ) ) {
+
+			unlink( $options['site_folder'] . '/pv-mappings' );
+			echo 'Deleted ' . $options['site_folder'] . '/pv-mappings' . PHP_EOL;
+
+		} else {
+
+			echo 'The pv-mappings file has already been deleted. No action taken.' . PHP_EOL;
+
+		}
 	}
 }
 
