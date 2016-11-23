@@ -276,7 +276,7 @@ if ( isset( $options['delete'] ) ) {
 if ( ! isset( $options['noprovsion'] ) && true === $needs_provision ) {
 
 	echo 'Reloading Vagrant for changes to take effect.' . PHP_EOL;
-	passthru( 'vagrant reload' );
+	passthru( 'vagrant reload --provision' );
 
 } elseif ( ! isset( $options['noprovsion'] ) ) {
 
