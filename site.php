@@ -72,8 +72,9 @@ if ( isset( $options['create'] ) ) {
 
 		mkdir( $options['site_folder'] );
 
-	} else {
+	} elseif ( file_exists( $vhost_file ) || file_exists( $options['site_folder'] . '/pv-hosts' ) || file_exists( $options['site_folder'] . '/pv-mappings' ) ) {
 
+		// Throw an error if any of the Primary Vagrant site files already exist.
 		fwrite( STDERR, 'A site with this domain already seems to exist. Please use a different site name or delete the existing site first.' . PHP_EOL );
 		exit( 1 );
 
