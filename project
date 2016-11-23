@@ -7,27 +7,49 @@
  * @author  Chris Wiegman <info@chriswiegman.com>
  */
 
-$short_args = 'd::';  // Primary domain name.
-$long_args  = array(
-	'list::', // List existing sites.
+$operations = array(
+	// command operations.
+	'help::', // Show help information.
+	'site-list::', // List existing sites.
 	'create-site::', // Use to create a site.
 	'delete-site::', // Use to delete a site.
+	'create-plugin', // Create a plugin project
+	'create-theme', // Create a theme project
+	'delete-plugin', // Delete a plugin project
+	'delete-theme', // Delete a theme project.
+);
+
+$args = array(
+	// Project to work on.
 	'domain::', // Primary domain name.
+
+	// Virtualhost options.
 	'database::', // Override database name.
 	'alias::', // Server alias(es).
 	'root::', // The root directory to map.
 	'apacheroot::', // The apache docroot.
-	'noprovsion::', // Set the flag to prevent a reload/provision.
 	'nodatabase::', // Set to prevent creation of a database.
 	'deletefiles::', // Set to perform deletion of all files when removing a site.
+
+	// Vagrant options.
+	'noprovsion::', // Set the flag to prevent a reload/provision.
 );
 
-$options = getopt( $short_args, $long_args );
+$options = getopt( '', array_merge( $args, $operations ) );
 
 // Find out if we're creating, listing or deleting a site.
-if ( ! isset( $options['create-site'] ) && ! isset( $options['list'] ) && ! isset( $options['delete-site'] ) && ! isset( $options['help'] ) ) {
+if (
+	! isset( $options['create-site'] ) &&
+	! isset( $options['site-list'] ) &&
+	! isset( $options['delete-site'] ) &&
+	! isset( $options['help'] ) &&
+	! isset( $options['create-plugin'] ) &&
+	! isset( $options['create-theme'] ) &&
+	! isset( $options['delete-plugin'] ) &&
+	! isset( $options['delete-theme'] )
+) {
 
-	fwrite( STDERR, 'You must specify "create-site," "delete-site," "list" or "help" when using this command.' . PHP_EOL );
+	fwrite( STDERR, 'You must specify a valid operation. Use "php project --help" for more information on using the project generator.' . PHP_EOL );
 	exit( 1 );
 
 }
@@ -48,7 +70,7 @@ if ( isset( $options['create-site'] ) || isset( $options['delete-site'] ) ) {
 	$needs_provision = false; // A flag to prevent wasting time provisioning if it isn't needed.
 
 	// Make sure we have a domain name.
-	if ( ! isset( $options['domain'] ) && ! isset( $options['d'] ) ) {
+	while ( ! isset( $options['domain'] ) && empty( trim( $operations['domain'] ) ) ) {
 
 		echo 'Enter a domain name for the site:';
 
@@ -57,10 +79,6 @@ if ( isset( $options['create-site'] ) || isset( $options['delete-site'] ) ) {
 		$options['domain'] = sanitize_file_name( trim( fgets( $handle ) ) );
 
 		fclose( $handle );
-
-	} elseif ( ! isset( $options['domain'] ) ) {
-
-		$options['domain'] = sanitize_file_name( trim( $options['d'] ) );
 
 	}
 
