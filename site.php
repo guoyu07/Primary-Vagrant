@@ -41,8 +41,8 @@ if ( isset( $options['list'] ) ) {
 	exit();
 }
 
-// Execute create functions.
-if ( isset( $options['create'] ) ) {
+// Setup variables common to both site creation and site deletion.
+if ( isset( $options['create'] ) || isset( $options['delete'] ) ) {
 
 	// Make sure we have a domain name.
 	if ( ! isset( $options['domain'] ) && ! isset( $options['d'] ) ) {
@@ -66,6 +66,11 @@ if ( isset( $options['create'] ) ) {
 
 	// Get the vhost file and make sure it hasn't already been created.
 	$vhost_file = dirname( __FILE__ ) . '/user-data/vhosts/' . $options['domain'] . '.pp';
+
+}
+
+// Execute create functions.
+if ( isset( $options['create'] ) ) {
 
 	// Create the directory and verify the vhost file doesn't already exists or die if it already exists.
 	if ( ! is_dir( $options['site_folder'] ) && ! file_exists( $vhost_file ) ) {
@@ -204,7 +209,9 @@ if ( isset( $options['create'] ) ) {
 
 // Execute delete functions.
 if ( isset( $options['delete'] ) ) {
+
 	exit();
+
 }
 
 /**
