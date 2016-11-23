@@ -35,7 +35,7 @@ $args = array(
 	'deletefiles::', // Set to perform deletion of all files when removing a site.
 
 	// Vagrant options.
-	'noprovsion::', // Set the flag to prevent a reload/provision.
+	'noprovision::', // Set the flag to prevent a reload/provision.
 );
 
 $options = getopt( '', array_merge( $args, $operations ) );
@@ -301,12 +301,12 @@ if ( isset( $options['delete-site'] ) ) {
 }
 
 // Reload and provision vagrant if needed.
-if ( ! isset( $options['noprovsion'] ) && true === $needs_provision ) {
+if ( ! isset( $options['noprovision'] ) && true === $needs_provision ) {
 
 	echo 'Reloading Vagrant for changes to take effect.' . PHP_EOL;
 	passthru( 'vagrant reload --provision' );
 
-} elseif ( ! isset( $options['noprovsion'] ) ) {
+} elseif ( ! isset( $options['noprovision'] ) ) {
 
 	echo 'Provisioning of Vagrant is not required.' . PHP_EOL;
 
