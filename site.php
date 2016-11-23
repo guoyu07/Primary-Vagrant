@@ -79,9 +79,10 @@ if ( isset( $options['create'] ) ) {
 
 		$options['root'] = $options['site_folder'];
 
-	} else {
+	} elseif ( ! is_dir( $options['root'] ) ) { // Throw an error if the root directory isn't already a valid directory.
 
-		$options['root'] = sanitize_file_name( $options['root'] );
+		fwrite( STDERR, 'The project root directory specified is not valid. Please specify a valid directory as "root"' . PHP_EOL );
+		exit( 1 );
 
 	}
 
@@ -112,7 +113,7 @@ if ( isset( $options['create'] ) ) {
 			foreach ( $options['alias'] as $alias ) {
 
 				$domains .= sanitize_file_name( $alias ) . PHP_EOL;
-				$aliases .= sanitize_file_name( $options['alias'] ) . ' ';
+				$aliases .= sanitize_file_name( $alias ) . ' ';
 
 			}
 
@@ -131,6 +132,13 @@ if ( isset( $options['create'] ) ) {
 	// Create and write the pv-hosts file.
 	$handle = fopen( $options['site_folder'] . '/pv-hosts', 'x+' );
 	fwrite( $handle, $domains );
+	fclose( $handle );
+
+	// Write the mapping file.
+	$mapping = 'config.vm.synced_folder "' . $options['root'] . '", "/var/www/' . $options['domain'] . '", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774"]';
+
+	$handle = fopen( $options['site_folder'] . '/pv-mappings', 'x+' );
+	fwrite( $handle, $mapping );
 	fclose( $handle );
 
 	print_r( $options );
