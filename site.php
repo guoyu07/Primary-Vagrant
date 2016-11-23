@@ -77,6 +77,8 @@ if ( isset( $options['create'] ) ) {
 
 	}
 
+	echo 'Site folder created.' . PHP_EOL;
+
 	// Make sure we have a valid site root.
 	if ( ! isset( $options['root'] ) ) {
 
@@ -102,7 +104,10 @@ if ( isset( $options['create'] ) ) {
 
 	// Create the apache root directory if it is different than the site root.
 	if ( ! is_dir( $apache_path ) ) {
+
 		mkdir( $apache_path );
+		echo 'Apache docroot folder created.' . PHP_EOL;
+
 	}
 
 	// Create a list of the domain and any aliases.
@@ -137,12 +142,19 @@ if ( isset( $options['create'] ) ) {
 	fwrite( $handle, $domains );
 	fclose( $handle );
 
+	echo 'Hosts file created.' . PHP_EOL;
+
 	// Write the mapping file.
 	$mapping = 'config.vm.synced_folder "' . $options['root'] . '", "/var/www/' . $options['domain'] . '", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774"]';
 
 	$handle = fopen( $options['site_folder'] . '/pv-mappings', 'x+' );
 	fwrite( $handle, $mapping );
 	fclose( $handle );
+
+	echo 'Mappings file created.' . PHP_EOL;
+
+	// Create the vhost config.
+
 
 	print_r( $options );
 
