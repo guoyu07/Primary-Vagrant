@@ -48,13 +48,13 @@ if ( isset( $options['create'] ) ) {
 
 		$domain = fopen( 'php://stdin', 'r' );
 
-		$options['domain'] = trim( fgets( $domain ) );
+		$options['domain'] = sanitize_file_name( trim( fgets( $domain ) ) );
 
 		fclose( $domain );
 
 	} elseif ( ! isset( $options['domain'] ) ) {
 
-		$options['domain'] = trim( $options['d'] );
+		$options['domain'] = sanitize_file_name( trim( $options['d'] ) );
 
 	}
 
@@ -75,12 +75,29 @@ if ( isset( $options['create'] ) ) {
 
 	// Make sure we have a valid site root.
 	if ( ! isset( $options['root'] ) ) {
+
 		$options['root'] = $options['site_folder'];
+
+	} else {
+
+		$options['root'] = sanitize_file_name( $options['root'] );
+
 	}
 
 	// Make sure we have a valid apache doc root.
 	if ( ! isset( $options['apacheroot'] ) ) {
-		$options['apacheroot'] = $options['site_folder'];
+
+		$options['apacheroot'] = '';
+
+	}
+
+	$options['apacheroot'] = sanitize_file_name( $options['apacheroot'] );
+
+	$apache_path = $options['site_folder'] . '/' . $options['apacheroot'];
+
+	// Create the apache root directory if it is different than the site root.
+	if ( ! is_dir( $apache_path ) ) {
+		mkdir( $apache_path );
 	}
 
 	print_r( $options );
@@ -92,4 +109,19 @@ if ( isset( $options['create'] ) ) {
 // Execute delete functions.
 if ( isset( $options['delete'] ) ) {
 	exit();
+}
+
+/**
+ * Sanitize the file and folder names submitted.
+ *
+ * @since 0.0.1
+ *
+ * @param string $file_name The file/folder name to sanitize.
+ *
+ * @return string A sanitized file/folder name.
+ */
+function sanitize_file_name( $file_name ) {
+
+	return preg_replace( "/[^a-z0-9\._-]+/gi", '', $file_name );
+
 }
