@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Generate site configurations easily from the command line.
