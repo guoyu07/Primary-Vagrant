@@ -93,10 +93,10 @@ if ( isset( $options['create-site'] ) || isset( $options['delete-site'] ) ) {
 	}
 
 	// Setup the site folder information.
-	$options['site_folder'] = dirname( __FILE__ ) . '/user-data/sites/' . $options['domain'];
+	$options['site_folder'] = dirname( __FILE__ ) . '/user-data/sites/' . $options['name'];
 
 	// Get the vhost file and make sure it hasn't already been created.
-	$vhost_file = dirname( __FILE__ ) . '/user-data/vhosts/' . $options['domain'] . '.pp';
+	$vhost_file = dirname( __FILE__ ) . '/user-data/vhosts/' . $options['name'] . '.pp';
 
 }
 
@@ -184,7 +184,7 @@ if ( isset( $options['create-site'] ) ) {
 	echo 'Hosts file created.' . PHP_EOL;
 
 	// Write the mapping file.
-	$mapping = 'config.vm.synced_folder "' . $options['root'] . '", "/var/www/' . $options['domain'] . '", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774"]';
+	$mapping = 'config.vm.synced_folder "' . $options['root'] . '", "/var/www/' . $options['name'] . '", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774"]';
 
 	$handle = fopen( $options['site_folder'] . '/pv-mappings', 'x+' );
 	fwrite( $handle, $mapping );
@@ -202,8 +202,8 @@ if ( isset( $options['create-site'] ) ) {
 	}
 
 	// @todo set more of these items as options.
-	$vhost_config .= "  docroot                         => '/var/www/" . $options['domain'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
-	$vhost_config .= "  directory                       => '/var/www/" . $options['domain'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
+	$vhost_config .= "  docroot                         => '/var/www/" . $options['name'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
+	$vhost_config .= "  directory                       => '/var/www/" . $options['name'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
 	$vhost_config .= "  directory_allow_override        => 'All'," . PHP_EOL;
 	$vhost_config .= "  ssl                             => true," . PHP_EOL;
 	$vhost_config .= "  template                        => '/vagrant/provision/lib/conf/vhost.conf.erb'" . PHP_EOL;
@@ -212,11 +212,11 @@ if ( isset( $options['create-site'] ) ) {
 	// Only add database information if we need to.
 	if ( ! isset( $options['nodatabase'] ) ) {
 
-		$database_name = $options['domain'];
+		$database_name = $options['name'];
 
 		// Respect and override set for the database name.
 		if ( isset( $options['database'] ) ) {
-			$database_name = sanitize_file_name( $options['databasse'] );
+			$database_name = sanitize_file_name( $options['database'] );
 		}
 
 		// @todo set more of these items as options.
@@ -302,6 +302,8 @@ if ( isset( $options['delete-site'] ) ) {
 
 // Create a plugin project
 if ( isset( $options['create-plugin'] ) ) {
+
+
 
 }
 
