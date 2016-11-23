@@ -300,6 +300,26 @@ if ( isset( $options['delete-site'] ) ) {
 	}
 }
 
+// Create a plugin project
+if ( isset( $options['create-plugin'] ) ) {
+
+}
+
+// Create a theme project
+if ( isset( $options['create-theme'] ) ) {
+
+}
+
+// Delete a plugin project
+if ( isset( $options['delete-plugin'] ) ) {
+
+}
+
+// Delete a theme project
+if ( isset( $options['delete-theme'] ) ) {
+
+}
+
 // Reload and provision vagrant if needed.
 if ( ! isset( $options['noprovision'] ) && true === $needs_provision ) {
 
