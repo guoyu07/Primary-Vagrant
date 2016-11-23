@@ -1,4 +1,10 @@
 <?php
+/**
+ * Generate site configurations easily from the command line.
+ *
+ * @version 0.0.1
+ * @author  Chris Wiegman <info@chriswiegman.com>
+ */
 
 $short_args = 'd::';  // Primary domain name.
 $long_args  = array(
