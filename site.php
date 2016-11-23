@@ -154,9 +154,46 @@ if ( isset( $options['create'] ) ) {
 	echo 'Mappings file created.' . PHP_EOL;
 
 	// Create the vhost config.
+	$vhost_config = "apache::vhost { '" . $options['domain'] . "':" . PHP_EOL;
 
+	if ( ! empty( $aliases ) ) {
+		$vhost_config .= "  serveraliases                   => '" . $aliases . "'," . PHP_EOL;
+	}
 
-	print_r( $options );
+	// @todo set more of these items as options.
+	$vhost_config .= "  docroot                         => '/var/www/" . $options['domain'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
+	$vhost_config .= "  directory                       => '/var/www/" . $options['domain'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
+	$vhost_config .= "  directory_allow_override        => 'All'," . PHP_EOL;
+	$vhost_config .= "  ssl                             => true," . PHP_EOL;
+	$vhost_config .= "  template                        => '/vagrant/provision/lib/conf/vhost.conf.erb'" . PHP_EOL;
+	$vhost_config .= "}" . PHP_EOL;
+
+	// Only add database information if we need to.
+	if ( ! isset( $options['nodatabase'] ) ) {
+
+		$database_name = $options['domain'];
+
+		// Respect and override set for the database name.
+		if ( isset( $options['database'] ) ) {
+			$database_name = sanitize_file_name( $options['databasse'] );
+		}
+
+		// @todo set more of these items as options.
+		$vhost_config .= PHP_EOL;
+		$vhost_config .= "mysql_database { '" . $database_name . "':" . PHP_EOL;
+		$vhost_config .= "  ensure  => 'present'," . PHP_EOL;
+		$vhost_config .= "  charset => 'utf8mb4'," . PHP_EOL;
+		$vhost_config .= "  collate => 'utf8mb4_general_ci'," . PHP_EOL;
+		$vhost_config .= "  require => Class['mysql::server']," . PHP_EOL;
+		$vhost_config .= "}" . PHP_EOL;
+	}
+
+	// Write the virtualhost file.
+	$handle = fopen( $vhost_file, 'x+' );
+	fwrite( $handle, $vhost_config );
+	fclose( $handle );
+
+	echo 'Virtualhost configuration created.' . PHP_EOL;
 
 	exit();
 
