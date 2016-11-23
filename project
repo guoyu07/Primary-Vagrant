@@ -40,17 +40,17 @@ $args = array(
 
 $options = getopt( '', array_merge( $args, $operations ) );
 
-// Find out if we're creating, listing or deleting a site.
-if (
-	! isset( $options['create-site'] ) &&
-	! isset( $options['site-list'] ) &&
-	! isset( $options['delete-site'] ) &&
-	! isset( $options['help'] ) &&
-	! isset( $options['create-plugin'] ) &&
-	! isset( $options['create-theme'] ) &&
-	! isset( $options['delete-plugin'] ) &&
-	! isset( $options['delete-theme'] )
-) {
+// Make sure the user provided a valid operation.
+$valid_operation = false;
+
+foreach ( $operations as $operation ) {
+
+	if ( array_key_exists( $operation, $options ) ) {
+		$valid_operation = true;
+	}
+}
+
+if ( true === $valid_operation ) {
 
 	fwrite( STDERR, 'You must specify a valid operation. Use "php project --help" for more information on using the project generator.' . PHP_EOL );
 	exit( 1 );
