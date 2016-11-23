@@ -25,6 +25,7 @@ $args = array(
 
 	// Options for all projects.
 	'root::', // The root directory to map.
+	'deletefiles::', // Set to perform deletion of all files when removing a project.
 
 	// Virtualhost options.
 	'domain::', // The primary domain name for the site.
@@ -32,7 +33,6 @@ $args = array(
 	'alias::', // Server alias(es).
 	'apacheroot::', // The apache docroot.
 	'nodatabase::', // Set to prevent creation of a database.
-	'deletefiles::', // Set to perform deletion of all files when removing a site.
 
 	// Vagrant options.
 	'noprovision::', // Set the flag to prevent a reload/provision.
@@ -59,12 +59,18 @@ if ( false === $valid_operation ) {
 
 // Execute help functions.
 if ( isset( $options['help'] ) ) {
+
+	echo 'Help is still in progress. Please check back soon.' . PHP_EOL;
 	exit();
+
 }
 
 // Execute list functions.
 if ( isset( $options['list'] ) ) {
+
+	echo 'Site list is still in progress. Please check back soon.' . PHP_EOL;
 	exit();
+
 }
 
 // Make sure we have a project name.
@@ -351,14 +357,38 @@ if ( isset( $options['create-plugin'] ) || isset( $options['create-theme'] ) ) {
 
 }
 
-// Delete a plugin project
-if ( isset( $options['delete-plugin'] ) ) {
+// Delete a plugin or theme project
+if ( isset( $options['delete-plugin'] ) || isset( $options['delete-theme'] ) ) {
 
-}
+	if ( isset( $options['deletefiles'] ) ) { // Remove entire site folder.
 
-// Delete a theme project
-if ( isset( $options['delete-theme'] ) ) {
+		if ( is_dir( $options['site_folder'] ) ) {
 
+			delete_directory( $options['site_folder'] );
+			$needs_provision = true;
+			echo 'Deleted project folder.' . PHP_EOL;
+
+		} else {
+
+			echo 'The project folder has already been deleted. No action taken.' . PHP_EOL;
+
+		}
+
+	} else { // Only remove Primary Vagrant files.
+
+		// Delete pv-mappings if it exists.
+		if ( file_exists( $options['site_folder'] . '/pv-mappings' ) ) {
+
+			unlink( $options['site_folder'] . '/pv-mappings' );
+			$needs_provision = true;
+			echo 'Deleted ' . $options['site_folder'] . '/pv-mappings' . PHP_EOL;
+
+		} else {
+
+			echo 'The pv-mappings file has already been deleted. No action taken.' . PHP_EOL;
+
+		}
+	}
 }
 
 // Reload and provision vagrant if needed.
