@@ -62,8 +62,11 @@ if ( isset( $options['create'] ) ) {
 	// Setup the site folder information.
 	$options['site_folder'] = dirname( __FILE__ ) . '/user-data/sites/' . $options['domain'];
 
-	// Create the directory or die if it already exists.
-	if ( ! is_dir( $options['site_folder'] ) ) {
+	// Get the vhost file and make sure it hasn't already been created.
+	$vhost_file = dirname( __FILE__ ) . '/user-data/vhosts/' . $options['domain'] . '.pp';
+
+	// Create the directory and verify the vhost file doesn't already exists or die if it already exists.
+	if ( ! is_dir( $options['site_folder'] ) && ! file_exists( $vhost_file ) ) {
 
 		mkdir( $options['site_folder'] );
 
