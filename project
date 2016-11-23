@@ -346,6 +346,10 @@ function delete_directory( $directory ) {
  */
 function sanitize_file_name( $file_name ) {
 
-	return preg_replace( "/[^a-z\d.]/", '', $file_name );
+	// Replace all weird characters with dashes
+	$file_name = preg_replace( '/[^\w\-\.]+/u', '-', $file_name );
+
+	// Only allow one dash separator at a time (and make string lowercase)
+	return mb_strtolower( preg_replace( '/--+/u', '-', $file_name ), 'UTF-8' );
 
 }
