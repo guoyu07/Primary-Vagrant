@@ -165,7 +165,9 @@ if ( isset( $options['create'] ) ) {
 	echo 'Mappings file created.' . PHP_EOL;
 
 	// Create the vhost config.
-	$vhost_config = "apache::vhost { '" . $options['domain'] . "':" . PHP_EOL;
+	$vhost_config = '# Site Created with Primary Vagrant Site Generator.' . PHP_EOL . PHP_EOL; // Header for easier usage later.
+
+	$vhost_config .= "apache::vhost { '" . $options['domain'] . "':" . PHP_EOL;
 
 	if ( ! empty( $aliases ) ) {
 		$vhost_config .= "  serveraliases                   => '" . $aliases . "'," . PHP_EOL;
