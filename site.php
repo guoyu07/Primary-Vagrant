@@ -18,7 +18,7 @@ $long_args  = array(
 	'apacheroot::', // The apache docroot.
 	'noprovsion::', // Set the flag to prevent a reload/provision.
 	'nodatabase::', // Set to prevent creation of a database.
-	'leavfiles::', // Set to prevent deletion of all files when removing a site.
+	'deletefiles::', // Set to perform deletion of all files when removing a site.
 );
 
 $options = getopt( $short_args, $long_args );
@@ -203,14 +203,51 @@ if ( isset( $options['create'] ) ) {
 
 	echo 'Virtualhost configuration created.' . PHP_EOL;
 
-	exit();
-
 }
 
 // Execute delete functions.
 if ( isset( $options['delete'] ) ) {
 
-	exit();
+	// Delete the site configuration.
+	unlink( $vhost_file );
+	echo 'Deleted ' . $vhost_file . PHP_EOL;
+
+	if ( isset( $options['deletefiles'] ) ) { // Remove entire site folder.
+
+		delete_directory( $options['site_folder'] );
+		echo 'Deleted site folder.' . PHP_EOL;
+
+	} else { // Only remove Primary Vagrant files.
+
+		unlink( $options['site_folder'] . '/pv-hosts' );
+		echo 'Deleted ' . $options['site_folder'] . '/pv-hosts' . PHP_EOL;
+
+		unlink( $options['site_folder'] . '/pv-mappings' );
+		echo 'Deleted ' . $options['site_folder'] . '/pv-mappings' . PHP_EOL;
+
+	}
+}
+
+exit();
+
+/**
+ * Removes a directory recursively.
+ *
+ * @since 0.0.1
+ *
+ * @param string $directory The name of the directory to remove.
+ *
+ * @return bool True on success or false.
+ */
+function delete_directory( $directory ) {
+
+	$files = array_diff( scandir( $directory ), array( '.', '..' ) );
+
+	foreach ( $files as $file ) {
+		( is_dir( $directory . '/' . $file ) ) ? delete_directory( $directory . '/' . $file ) : unlink( $directory . '/' . $file );
+	}
+
+	return rmdir( $directory );
 
 }
 
