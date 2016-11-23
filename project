@@ -21,12 +21,15 @@ $operations = array(
 
 $args = array(
 	// Project to work on.
-	'domain::', // Primary domain name.
+	'name::', // Primary project name for sites.
+
+	// Options for all projects.
+	'root::', // The root directory to map.
 
 	// Virtualhost options.
+	'domain::', // The primary domain name for the site.
 	'database::', // Override database name.
 	'alias::', // Server alias(es).
-	'root::', // The root directory to map.
 	'apacheroot::', // The apache docroot.
 	'nodatabase::', // Set to prevent creation of a database.
 	'deletefiles::', // Set to perform deletion of all files when removing a site.
@@ -64,22 +67,29 @@ if ( isset( $options['list'] ) ) {
 	exit();
 }
 
+// Make sure we have a project name.
+while ( ! isset( $options['name'] ) && empty( trim( $operations['name'] ) ) ) {
+
+	echo 'Enter a project name for the site:';
+
+	$handle = fopen( 'php://stdin', 'r' );
+
+	$options['name'] = sanitize_file_name( trim( fgets( $handle ) ) );
+
+	fclose( $handle );
+
+}
+
+$options['name'] = sanitize_file_name( $options['name'] ); // Make sure the name is sanitized even if we didn't override.
+
 // Setup variables common to both site creation and site deletion.
 if ( isset( $options['create-site'] ) || isset( $options['delete-site'] ) ) {
 
 	$needs_provision = false; // A flag to prevent wasting time provisioning if it isn't needed.
 
 	// Make sure we have a domain name.
-	while ( ! isset( $options['domain'] ) && empty( trim( $operations['domain'] ) ) ) {
-
-		echo 'Enter a domain name for the site:';
-
-		$handle = fopen( 'php://stdin', 'r' );
-
-		$options['domain'] = sanitize_file_name( trim( fgets( $handle ) ) );
-
-		fclose( $handle );
-
+	if ( ! isset( $options['domain'] ) ) {
+		$options['domain'] = $options['name'];
 	}
 
 	// Setup the site folder information.
