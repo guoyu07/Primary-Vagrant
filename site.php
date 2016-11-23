@@ -15,7 +15,8 @@ $long_args  = array(
 	'database::', // Override database name.
 	'alias::', // Server alias(es).
 	'root::', // The root directory to map.
-	'apacheroot::', // The apache docroot
+	'apacheroot::', // The apache docroot.
+	'noprovsion::', //Set the flag to prevent a reload/provision.
 );
 
 $options = getopt( $short_args, $long_args );
@@ -46,11 +47,11 @@ if ( isset( $options['create'] ) ) {
 
 		echo 'Enter a domain name for the site:';
 
-		$domain = fopen( 'php://stdin', 'r' );
+		$handle = fopen( 'php://stdin', 'r' );
 
-		$options['domain'] = sanitize_file_name( trim( fgets( $domain ) ) );
+		$options['domain'] = sanitize_file_name( trim( fgets( $handle ) ) );
 
-		fclose( $domain );
+		fclose( $handle );
 
 	} elseif ( ! isset( $options['domain'] ) ) {
 
@@ -100,6 +101,38 @@ if ( isset( $options['create'] ) ) {
 		mkdir( $apache_path );
 	}
 
+	// Create a list of the domain and any aliases.
+	$domains = $options['domain'] . PHP_EOL;
+	$aliases = ''; // A space delimited string of aliases only for use in the VHost configuration.
+
+	if ( isset( $options['alias'] ) ) {
+
+		if ( is_array( $options['alias'] ) ) {
+
+			foreach ( $options['alias'] as $alias ) {
+
+				$domains .= sanitize_file_name( $alias ) . PHP_EOL;
+				$aliases .= sanitize_file_name( $options['alias'] ) . ' ';
+
+			}
+
+			$aliases = substr( $aliases, 0, strlen( $aliases ) - 1 ); // Remove the last space.
+
+		} else {
+
+			$domains .= sanitize_file_name( $options['alias'] ) . PHP_EOL;
+			$aliases = sanitize_file_name( $options['alias'] );
+
+		}
+	}
+
+	$domains = substr( $domains, 0, strlen( $domains ) - 1 ); // Remove the last newline.
+
+	// Create and write the pv-hosts file.
+	$handle = fopen( $options['site_folder'] . '/pv-hosts', 'x+' );
+	fwrite( $handle, $domains );
+	fclose( $handle );
+
 	print_r( $options );
 
 	exit();
@@ -122,6 +155,6 @@ if ( isset( $options['delete'] ) ) {
  */
 function sanitize_file_name( $file_name ) {
 
-	return preg_replace( "/[^a-z0-9\._-]+/gi", '', $file_name );
+	return preg_replace( "/[^a-z\d.]/", '', $file_name );
 
 }
