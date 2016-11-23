@@ -45,6 +45,8 @@ if ( isset( $options['list'] ) ) {
 // Setup variables common to both site creation and site deletion.
 if ( isset( $options['create'] ) || isset( $options['delete'] ) ) {
 
+	$needs_provision = false; // A flag to prevent wasting time provisioning if it isn't needed.
+
 	// Make sure we have a domain name.
 	if ( ! isset( $options['domain'] ) && ! isset( $options['d'] ) ) {
 
@@ -204,6 +206,8 @@ if ( isset( $options['create'] ) ) {
 
 	echo 'Virtualhost configuration created.' . PHP_EOL;
 
+	$needs_provision = true;
+
 }
 
 // Execute delete functions.
@@ -213,6 +217,7 @@ if ( isset( $options['delete'] ) ) {
 	if ( file_exists( $vhost_file ) ) {
 
 		unlink( $vhost_file );
+		$needs_provision = true;
 		echo 'Deleted ' . $vhost_file . PHP_EOL;
 
 	} else {
@@ -224,8 +229,9 @@ if ( isset( $options['delete'] ) ) {
 	if ( isset( $options['deletefiles'] ) ) { // Remove entire site folder.
 
 		if ( is_dir( $options['site_folder'] ) ) {
-			
+
 			delete_directory( $options['site_folder'] );
+			$needs_provision = true;
 			echo 'Deleted site folder.' . PHP_EOL;
 
 		} else {
@@ -240,6 +246,7 @@ if ( isset( $options['delete'] ) ) {
 		if ( file_exists( $options['site_folder'] . '/pv-hosts' ) ) {
 
 			unlink( $options['site_folder'] . '/pv-hosts' );
+			$needs_provision = true;
 			echo 'Deleted ' . $options['site_folder'] . '/pv-hosts' . PHP_EOL;
 
 		} else {
@@ -252,6 +259,7 @@ if ( isset( $options['delete'] ) ) {
 		if ( file_exists( $options['site_folder'] . '/pv-mappings' ) ) {
 
 			unlink( $options['site_folder'] . '/pv-mappings' );
+			$needs_provision = true;
 			echo 'Deleted ' . $options['site_folder'] . '/pv-mappings' . PHP_EOL;
 
 		} else {
@@ -260,6 +268,18 @@ if ( isset( $options['delete'] ) ) {
 
 		}
 	}
+}
+
+// Reload and provision vagrant if needed.
+if ( ! isset( $options['noprovsion'] ) && true === $needs_provision ) {
+
+	echo 'Reloading Vagrant for changes to take effect.' . PHP_EOL;
+	passthru( 'vagrant reload' );
+
+} elseif ( ! isset( $options['noprovsion'] ) ) {
+
+	echo 'Provisioning of Vagrant is not required.' . PHP_EOL;
+
 }
 
 exit();
