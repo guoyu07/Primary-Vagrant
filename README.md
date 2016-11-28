@@ -102,6 +102,77 @@ The following websites come pre-configured in the system:
 
 ### Configure Additional Sites
 
+#### Using the Site Creator
+
+##### Creating a Site
+
+```php project --create-site```
+
+You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash). For example:
+
+Project name __My Project__
+
+will be reachable at: http://my-project
+
+##### Deleting a Site
+
+```php project --delete-site```
+
+You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash). For example:
+
+Project name __My Project__
+
+will delete the Primary Vagrant project files in the folder __my-project__
+
+__**Note:** Deleting a project will NOT delete the database nor the files. You may delete the database manually if you desire and files in the sites folder can be deleted with the ```--deletefiles``` option.
+
+##### Creating a Plugin
+
+```php project --create-plugin```
+
+You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
+
+Plugins will be available on trunk.wordpress.pv, stable.wordpress.pv and legacy.wordpress.pv.
+
+##### Deleting a Plugin
+
+```php project --delete-plugin```
+
+You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
+
+##### Creating a Theme
+
+```php project --create-theme```
+
+You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
+
+Themes will be available on trunk.wordpress.pv, stable.wordpress.pv and legacy.wordpress.pv.
+
+##### Deleting a Theme
+
+```php project --delete-theme```
+
+You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
+
+##### Advanced Usage
+
+There are a number of advanced options you can use to customize your project there are as follows:
+
+* ```norpovision``` Prevents vagrant from reloading and reprovisioning upon project creation/deletion.
+* ```name``` Specify the project name without a prompt
+* ```root``` A directory to map as the project root to keep the project files outside of Primary Vagrant. A folder with the project name will still be created in Primary Vagrant's sites folder but it will only hold files necessary for the project to be recognized in Primary Vagrant.
+* ```deletefiles``` Use this to force file deletion upon project deletion. Without this only the Primary Vagrant files will be removed and the sites folder will remain. Does not apply to root folders outside of the Primary Vagrant structure.
+* ```domain``` Specify the domain to use for a site. Will override the domain name generation from the project name.
+* ```database``` by default sites will get a database of the same name as the domain name. Use this option to override the database name.
+* ```alias``` Specify a domain alias for apache. Multiple aliases can be specified by calling this option multiple times.
+* ```apacheroot``` Specify a subfolder of the project root to be used as the apache root folder. Useful for projects like the Laravel where you may want to map one folder but have Apache only serve part of it.
+* ```nodatabase``` Don't create a database for a site project.
+
+
+__Note: all options must be specified as --option=value (complete with the equal sign).
+
+#### Manually Creating Sites
+
 First, create a file called `pv-mappings` in the user-data directory. This will map any sites you create to the appropriate folder on PV.
 
 Example Mapping:
