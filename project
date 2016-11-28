@@ -13,10 +13,10 @@ $operations = array(
 	'site-list::', // List existing sites.
 	'create-site::', // Use to create a site.
 	'delete-site::', // Use to delete a site.
-	'create-plugin', // Create a plugin project
-	'create-theme', // Create a theme project
-	'delete-plugin', // Delete a plugin project
-	'delete-theme', // Delete a theme project.
+	'create-plugin::', // Create a plugin project
+	'create-theme::', // Create a theme project
+	'delete-plugin::', // Delete a plugin project
+	'delete-theme::', // Delete a theme project.
 );
 
 $args = array(
@@ -45,7 +45,7 @@ $valid_operation = false;
 
 foreach ( $operations as $operation ) {
 
-	if ( array_key_exists( $operation, $options ) ) {
+	if ( array_key_exists( str_replace( '::', '', $operation ), $options ) ) {
 		$valid_operation = true;
 	}
 }
