@@ -45,13 +45,19 @@ class { '::php':
     'PHP/max_execution_time'  => '90',
   },
 } ->
-exec { 'php_codesniffer':
-  command => 'git clone https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && cd /var/phpcs && pear install package.xml',
-  require => Class['php'],
-  creates => '/usr/bin/phpcs',
-} ->
-exec { 'wp_code_standards':
-  command => 'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /var/wpcs && phpcs --config-set installed_paths /var/wpcs',
-  require => Class['php'],
-  creates => '/var/wpcs/README.md',
-}
+  exec { 'php_codesniffer':
+    command =>
+      'git clone https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && cd /var/phpcs && pear install package.xml',
+    require => Class['php'],
+    creates => '/usr/bin/phpcs',
+  } ->
+  exec { 'wp_code_standards':
+    command =>
+      'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /var/wpcs && phpcs --config-set installed_paths /var/wpcs',
+    require => Class['php'],
+    creates => '/var/wpcs/README.md',
+  } ->
+  exec { 'disable_php_mysql':
+    command => 'phpdismod mysql',
+    require => Class['php'],
+  }
