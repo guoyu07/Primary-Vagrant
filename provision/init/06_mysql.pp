@@ -2,8 +2,8 @@ class { 'mysql::server':
   root_password           => 'password',
   remove_default_accounts => true,
   override_options        => {
-    'mysqld' => {
-      'sql_mode' => 'NO_ENGINE_SUBSTITUTION',
+    mysqld => {
+      sql_mode => 'NO_ENGINE_SUBSTITUTION',
     }
   }
 }
