@@ -37,8 +37,8 @@ class { 'ohmyzsh': }
 ohmyzsh::install { 'vagrant': }
 
 class { 'nodejs':
-  version      => 'latest',
-  make_install => false,
+  nodejs_dev_package_ensure => 'present',
+  npm_package_ensure        => 'present',
 }
 
 file { '.zshrc':
