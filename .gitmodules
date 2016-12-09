@@ -40,3 +40,6 @@ url=https://github.com/voxpupuli/puppet-php.git
 [submodule "provision/modules/mailhog"]
 	path = provision/modules/mailhog
 	url = https://github.com/ftaeger/ftaeger-mailhog.git
+[submodule "provision/modules/nodejs"]
+	path = provision/modules/nodejs
+	url = https://github.com/voxpupuli/puppet-nodejs.git
