@@ -9,7 +9,6 @@
 
 $operations = array(
 	// command operations.
-	'help::', // Show help information.
 	'site-list::', // List existing sites.
 	'create-site::', // Use to create a site.
 	'delete-site::', // Use to delete a site.
@@ -52,16 +51,8 @@ foreach ( $operations as $operation ) {
 
 if ( false === $valid_operation ) {
 
-	fwrite( STDERR, 'You must specify a valid operation. Use "php project --help" for more information on using the project generator.' . PHP_EOL );
+	fwrite( STDERR, 'You must specify a valid operation. View README.md for more information on using the project generator.' . PHP_EOL );
 	exit( 1 );
-
-}
-
-// Execute help functions.
-if ( isset( $options['help'] ) ) {
-
-	echo 'Help is still in progress. Please check back soon.' . PHP_EOL;
-	exit();
 
 }
 
