@@ -106,7 +106,7 @@ The following websites come pre-configured in the system:
 
 ##### Creating a Site
 
-```php project --create-site```
+```php project.php --create-site```
 
 You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash). For example:
 
@@ -116,7 +116,7 @@ will be reachable at: http://my-project
 
 ##### Deleting a Site
 
-```php project --delete-site```
+```php project.php --delete-site```
 
 You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash). For example:
 
@@ -128,7 +128,7 @@ __**Note:** Deleting a project will NOT delete the database nor the files. You m
 
 ##### Creating a Plugin
 
-```php project --create-plugin```
+```php project.php --create-plugin```
 
 You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
 
@@ -136,13 +136,13 @@ Plugins will be available on trunk.wordpress.pv, stable.wordpress.pv and legacy.
 
 ##### Deleting a Plugin
 
-```php project --delete-plugin```
+```php project.php --delete-plugin```
 
 You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
 
 ##### Creating a Theme
 
-```php project --create-theme```
+```php project.php --create-theme```
 
 You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
 
@@ -150,7 +150,7 @@ Themes will be available on trunk.wordpress.pv, stable.wordpress.pv and legacy.w
 
 ##### Deleting a Theme
 
-```php project --delete-theme```
+```php project.php --delete-theme```
 
 You will be prompted for a project name. This will be the name of the folder in your Primary Vagrant Sites folder and will be mapped to a related domain whereas all non-domain characters, such as space, etc, will be replaces with a "-" (dash).
 
