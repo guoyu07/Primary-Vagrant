@@ -13,7 +13,6 @@ class { '::php':
     redis        => { },
     xdebug       => {
       zend            => true,
-      provider        => 'pecl',
       settings        => {
         'XDEBUG/xdebug.trace_enable_trigger'      => '1',
         'XDEBUG/xdebug.trace_output_dir'          => '/vagrant/user-data/debug',
