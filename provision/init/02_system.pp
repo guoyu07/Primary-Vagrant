@@ -32,7 +32,6 @@ class { 'ohmyzsh': }
 
 ohmyzsh::install { 'vagrant': }
 
-
 class { 'nvm':
   user         => 'vagrant',
   install_node => '7.2.1',
