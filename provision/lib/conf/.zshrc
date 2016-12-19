@@ -82,6 +82,8 @@ alias xon="xdebug_on"
 alias xoff="xdebug_off"
 alias xlon="xdebug_listen_on"
 alias xloff="xdebug_listen_off"
+alias plugins="cd /var/www/default-sites/wordpress/content/plugins"
+alias themes="cd /var/www/default-sites/wordpress/content/themes"
 
 export PATH="$PATH:/vagrant/provision/lib/bin"
 
