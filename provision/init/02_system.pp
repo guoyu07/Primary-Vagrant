@@ -32,9 +32,10 @@ class { 'ohmyzsh': }
 
 ohmyzsh::install { 'vagrant': }
 
-class { 'nodejs':
-  nodejs_dev_package_ensure => 'present',
-  npm_package_ensure        => 'present',
+
+class { 'nvm':
+  user         => 'vagrant',
+  install_node => '7.2.1',
 }
 
 file { '.zshrc':
