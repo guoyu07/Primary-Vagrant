@@ -10,9 +10,6 @@
 [submodule "provision/modules/mysql"]
 	path = provision/modules/mysql
 	url = https://github.com/puppetlabs/puppetlabs-mysql.git
-[submodule "provision/modules/postfix"]
-	path = provision/modules/postfix
-	url = https://github.com/Aethylred/puppet-postfix.git
 [submodule "provision/modules/ohmyzsh"]
 	path = provision/modules/ohmyzsh
 	url = https://github.com/acme/puppet-acme-oh-my-zsh.git
