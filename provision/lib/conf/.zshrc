@@ -84,3 +84,6 @@ alias xlon="xdebug_listen_on"
 alias xloff="xdebug_listen_off"
 
 export PATH="$PATH:/vagrant/provision/lib/bin"
+
+export NVM_DIR=/home/vagrant/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
