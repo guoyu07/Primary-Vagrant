@@ -43,3 +43,6 @@ url=https://github.com/voxpupuli/puppet-php.git
 [submodule "provision/modules/nodejs"]
 	path = provision/modules/nodejs
 	url = https://github.com/voxpupuli/puppet-nodejs.git
+[submodule "provision/modules/nvm"]
+	path = provision/modules/nvm
+	url = https://github.com/artberri/puppet-nvm.git
