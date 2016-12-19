@@ -1,6 +1,25 @@
-class { 'postfix':
-  relayhost      => '127.0.0.1',
-  relayhost_port => '1025',
+package{ 'postfix':
+  ensure => 'installed',
+  name   => 'postfix',
+  before => [
+    File['postfix_config']
+  ],
+}
+
+file{ 'postfix_config':
+  ensure  => 'file',
+  path    => '/etc/postfix/main.cf',
+  content => '/vagrant/provision/lib/conf/main.cf.erb',
+}
+
+service{ 'postfix':
+  ensure     => 'running',
+  enable     => true,
+  hasstatus  => true,
+  hasrestart => true,
+  subscribe  => [
+    File['postfix_config']
+  ]
 }
 
 class { 'mailhog':
