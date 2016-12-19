@@ -9,7 +9,7 @@ package{ 'postfix':
 file{ 'postfix_config':
   ensure  => 'file',
   path    => '/etc/postfix/main.cf',
-  content => '/vagrant/provision/lib/conf/main.cf.erb',
+  content => template('/vagrant/provision/lib/conf/main.cf.erb'),
 }
 
 service{ 'postfix':
