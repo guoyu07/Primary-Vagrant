@@ -1,9 +1,5 @@
 class { 'apt': }
 
-package { 'git':
-  ensure => 'installed'
-}
-
 package { 'vim':
   ensure => 'installed'
 }
