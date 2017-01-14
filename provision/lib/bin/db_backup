@@ -12,8 +12,13 @@ databases=`mysql --user=$USER -e "SHOW DATABASES;" | tr -d "| " | grep -v Databa
 
 for db in $databases; do
     if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "sys" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != "test" ]] && [[ "$db" != "Database" ]] && [[ "$db" != _* ]] ; then
-        echo "Dumping database: $db"
-        mysqldump --force --opt --user=$USER --databases $db > $OUTPUT/$db.sql
-        gzip -f $OUTPUT/$db.sql
+
+        tableCount=`mysql --user=$USER -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='$db';" | tr -d "| " | grep -v COUNT`
+
+		if [[ 0 < $tableCount ]] ; then
+            echo "Dumping database: $db"
+            mysqldump --force --opt --user=$USER --databases $db > $OUTPUT/$db.sql
+            gzip -f $OUTPUT/$db.sql
+        fi
     fi
 done
