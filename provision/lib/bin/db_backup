@@ -13,7 +13,7 @@ databases=`mysql --user=$USER -e "SHOW DATABASES;" | tr -d "| " | grep -v Databa
 for db in $databases; do
     if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "sys" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != "test" ]] && [[ "$db" != "Database" ]] && [[ "$db" != _* ]] ; then
         echo "Dumping database: $db"
-        mysqldump --force --opt --user=$USER --databases $db > $OUTPUT/`date +%Y%m%d`.$db.sql
-        gzip -f $OUTPUT/`date +%Y%m%d`.$db.sql
+        mysqldump --force --opt --user=$USER --databases $db > $OUTPUT/$db.sql
+        gzip -f $OUTPUT/$db.sql
     fi
 done
