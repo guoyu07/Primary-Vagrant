@@ -140,7 +140,7 @@ Vagrant.configure("2") do |root|
 	    # scripting. See the individual files in provision/lib/bin for details.
 	    if defined? VagrantPlugins::Triggers
 	        config.trigger.before :up do
-	            system('./provision/bin/repo_init.sh')
+	            system('./provision/lib/bin/vagrant_init.sh')
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-init.sh')) then
 	                system('./user-data/pv-init.sh')
 	            end
