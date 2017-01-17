@@ -46,7 +46,7 @@ class { '::php':
 } ->
   exec { 'php_codesniffer':
     command =>
-      'git clone https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && cd /var/phpcs && pear install package.xml',
+      'pear install PHP_CodeSniffer',
     require => Class['php'],
     creates => '/usr/bin/phpcs',
   } ->
