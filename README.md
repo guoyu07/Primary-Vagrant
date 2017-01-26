@@ -53,8 +53,8 @@ If you find any issues, please don't hesitate to submit a [pull request](https:/
 * phpmyadmin.pv - phpMyAdmin
 * replacedb.pv - Search Replace DB
 * core.wordpress.pv - WordPress development (for core dev)
-* legacy.wordpress.pv - Last version of WordPress (currently 4.4.x)
-* stable.wordpress.pv - Latest WordPress stable (currently 4.5.x)
+* legacy.wordpress.pv - Last version of WordPress (currently 4.6.x)
+* stable.wordpress.pv - Latest WordPress stable (currently 4.7.x)
 * trunk.wordpress.pv - WordPress trunk
 * webgrind.pv - webgrind
 
