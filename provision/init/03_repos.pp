@@ -1,13 +1,13 @@
 vcsrepo { '/var/www/default-sites/wordpress/legacy/htdocs/wordpress':
   ensure   => present,
-  revision => '4.6.3',
+  revision => '4.6.4',
   provider => git,
   source   => 'https://github.com/WordPress/WordPress.git',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/stable/htdocs/wordpress':
   ensure   => present,
-  revision => '4.7.2',
+  revision => '4.7.3',
   provider => git,
   source   => 'https://github.com/WordPress/WordPress.git',
 }
