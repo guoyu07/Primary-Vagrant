@@ -57,3 +57,17 @@ mysql_grant { 'username@localhost/*.*':
   user       => 'username@localhost',
   require    => Class['mysql::server'],
 }
+
+mysql_user { 'backup@localhost':
+  ensure        => 'present',
+  require       => Class['mysql::server']
+}
+
+mysql_grant { 'backup@localhost/*.*':
+  ensure     => 'present',
+  options    => ['GRANT'],
+  privileges => ['SELECT, LOCK TABLES, SHOW VIEW, EVENT, TRIGGER'],
+  table      => '*.*',
+  user       => 'backup@localhost',
+  require    => Class['mysql::server'],
+}
