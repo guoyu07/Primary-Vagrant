@@ -35,6 +35,13 @@ file { '/var/www/default-sites/phpmyadmin/phpmyadmin/config.inc.php':
   owner  => 'www-data',
   group  => 'vagrant',
   target => '/var/www/default-sites/phpmyadmin/config.inc.php',
+} -> exec { 'install_phpmyadmin':
+  command     => '/usr/local/bin/composer update',
+  environment => ["COMPOSER_HOME=/home/vagrant"],
+  cwd         => '/var/www/default-sites/phpmyadmin/phpmyadmin/',
+  user        => vagrant,
+  group       => vagrant,
+  require     => Class['php'],
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/content/plugins/any-ipsum':
