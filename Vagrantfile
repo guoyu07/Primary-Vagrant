@@ -105,7 +105,9 @@ Vagrant.configure("2") do |root|
 		# Provisioning
 		#
 		# Process one or more provisioning scripts depending on the existence of custom files.
-		config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'" # Prevents stdin error for Ubuntu
+
+		# Prevents stdin error for Ubuntu
+        config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
 	    # Make sure puppet is on the box
 		config.vm.provision "shell",
@@ -139,6 +141,7 @@ Vagrant.configure("2") do |root|
 	    # to create backups of all current databases. This can be overridden with custom
 	    # scripting. See the individual files in provision/lib/bin for details.
 	    if defined? VagrantPlugins::Triggers
+
 	        config.trigger.before :up do
 	            system('./provision/lib/bin/vagrant_init')
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-init.sh')) then
@@ -149,6 +152,7 @@ Vagrant.configure("2") do |root|
 	                system(file)
 	            end
 	        end
+
 	        config.trigger.before :halt do
 	            run_remote "bash /vagrant/provision/lib/bin/vagrant_halt"
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-halt.sh')) then
@@ -159,6 +163,7 @@ Vagrant.configure("2") do |root|
 	                system(file)
 	            end
 	        end
+
 	        config.trigger.before :suspend do
 	            run_remote "bash /vagrant/provision/lib/bin/vagrant_suspend"
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-suspend.sh')) then
@@ -169,6 +174,7 @@ Vagrant.configure("2") do |root|
 	                system(file)
 	            end
 	        end
+
 	        config.trigger.before :destroy do
 	            run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy"
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-destroy.sh')) then
@@ -181,31 +187,35 @@ Vagrant.configure("2") do |root|
 	        end
 	    end
 
-	    # Post-up message. Thanks @friartuck6000
-        config.vm.post_up_message = <<MSG
-================================================
-	 _____      _
-	|  __ \    (_)
-	| |__) | __ _ _ __ ___   __ _ _ __ _   _
-	|  ___/ '__| | '_ ` _ \ / _` | '__| | | |
-	| |   | |  | | | | | | | (_| | |  | |_| |
-	|_|   |_|  |_|_| |_| |_|\__,_|_|   \__, |
-	                                    __/ |
-	                                   |___/
-	__      __                         _
-	\ \    / /                        | |
-	 \ \  / /_ _  __ _ _ __ __ _ _ __ | |_
-	  \ \/ / _` |/ _` | '__/ _` | '_ \| __|
-	   \  / (_| | (_| | | | (_| | | | | |_
-	    \/ \__,_|\__, |_|  \__,_|_| |_|\__|
-	              __/ |
-	             |___/
-================================================
+        # Idea thanks to VVV.
+	    puts "";
+        puts "\033[38;5;196m================================================"
+        puts "\033[38;5;33m _____      _"
+        puts "\033[38;5;33m|  __ \\    (_)"
+        puts "\033[38;5;33m| |__) | __ _ _ __ ___   __ _ _ __ _   _"
+        puts "\033[38;5;33m|  ___/ '__| | '_ ` _ \\ / _` | '__| | | |"
+        puts "\033[38;5;33m| |   | |  | | | | | | | (_| | |  | |_| |"
+        puts "\033[38;5;33m|_|   |_|  |_|_| |_| |_|\\__,_|_|   \\__, |"
+        puts "\033[38;5;33m                                    __/ |"
+        puts "\033[38;5;33m                                   |___/"
+        puts "\033[38;5;118m__      __                         _"
+        puts "\033[38;5;118m\\ \\    / /                        | |"
+        puts "\033[38;5;118m \\ \\  / /_ _  __ _ _ __ __ _ _ __ | |_"
+        puts "\033[38;5;118m  \\ \\/ / _` |/ _` | '__/ _` | '_ \\| __|"
+        puts "\033[38;5;118m   \\  / (_| | (_| | | | (_| | | | | |_"
+        puts "\033[38;5;118m    \\/ \\__,_|\\__, |_|  \\__,_|_| |_|\\__|"
+        puts "\033[38;5;118m              __/ |"
+        puts "\033[38;5;118m             |___/"
+        puts "\033[38;5;196m================================================"
+        puts ""
+        puts "  \033[38;5;80mPrimary Vagrant:   \033[38;5;118mDevelop"
+        puts ""
+        puts "  \033[38;5;80mDocs:              \033[38;5;220mhttps://github.com/ChrisWiegman/Primary-Vagrant/wiki"
+        puts ""
+        puts ""
+        puts "\033[0m"
 
-   Primary Vagrant is ready. Happy developing!
-
-
-MSG
+        config.vm.post_up_message="\033[38;5;118mPrimary Vagrant is ready. Happy developing!"
 
 	end
 end
