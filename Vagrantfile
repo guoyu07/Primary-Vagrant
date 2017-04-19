@@ -74,7 +74,9 @@ Vagrant.configure("2") do |root|
 
 			# set auto_update to false, if you do NOT want to check the correct
 			# additions version when booting this machine
-			config.vbguest.auto_update = true
+			if Vagrant.has_plugin?("vagrant-vbguest")
+			    config.vbguest.auto_update = true
+			end
 		end
 
 		# Don't check for updates with every vagrant up
