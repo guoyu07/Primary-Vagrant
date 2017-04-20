@@ -25,7 +25,9 @@ Vagrant.configure("2") do |root|
 		# If you are already on a network using the 192.168.13.x subnet, this should be changed.
 		# If you are running more than one VM through Virtualbox, different subnets should be used
 		# for those as well. This includes other Vagrant boxes.
-		config.vm.network :private_network, id: "pv_primary", ip: "192.168.13.101"
+		machineIP = '192.168.13.101'
+
+		config.vm.network :private_network, id: "pv_primary", ip: machineIP
 
 		# Local Machine Hosts
 		#
@@ -39,24 +41,37 @@ Vagrant.configure("2") do |root|
 		#
 		# Other domains can be automatically added by including a pv-hosts file containing
 		# individual domains separated by whitespace in subdirectories of user-data/ and user-date/sites/.
-		if defined?(VagrantPlugins::Ghost)
-			# Recursively fetch the paths to all pv-hosts files under the default-sites/, user-data/ and user-data/sites/ directories.
-			paths = Dir[File.join(vagrant_dir, 'default-sites', 'pv-hosts')] + Dir[File.join(vagrant_dir, 'user-data', 'pv-hosts')]+ Dir[File.join(vagrant_dir, 'user-data', 'sites', '**', 'pv-hosts')]
+		unless Vagrant.has_plugin?("landrush")
 
-			# Parse the found pv-hosts files for host names.
-			hosts = paths.map do |path|
+            if defined?(VagrantPlugins::Ghost)
+                # Recursively fetch the paths to all pv-hosts files under the default-sites/, user-data/ and user-data/sites/ directories.
+                paths = Dir[File.join(vagrant_dir, 'default-sites', 'pv-hosts')] + Dir[File.join(vagrant_dir, 'user-data', 'pv-hosts')]+ Dir[File.join(vagrant_dir, 'user-data', 'sites', '**', 'pv-hosts')]
 
-			# Read line from file and remove line breaks
-			lines = File.readlines(path).map(&:chomp)
+                # Parse the found pv-hosts files for host names.
+                hosts = paths.map do |path|
 
-			# Filter out comments starting with "#"
-			lines.grep(/\A[^#]/)
+                # Read line from file and remove line breaks
+                lines = File.readlines(path).map(&:chomp)
 
-			end.flatten.uniq # Remove duplicate entries
+                # Filter out comments starting with "#"
+                lines.grep(/\A[^#]/)
 
-			# Pass the found host names to the ghost plugin so it can perform magic.
-			config.ghost.hosts = hosts
-		end
+                end.flatten.uniq # Remove duplicate entries
+
+                # Pass the found host names to the ghost plugin so it can perform magic.
+                config.ghost.hosts = hosts
+            end
+        end
+
+        # If We have Landrush use it to set the toplevel to pv.
+        # The use of landrush will override all custom domains set and all sites and projects will simply revert to the "pv" toplevel.
+		if Vagrant.has_plugin?("landrush")
+
+		    config.landrush.enabled = true
+
+		    config.landrush.tld = 'pv'
+
+        end
 
 		# Forward Agent
 		#
