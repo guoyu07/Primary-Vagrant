@@ -15,9 +15,9 @@ apache::module { 'proxy': }
 apache::module { 'proxy_fcgi': }
 apache::module { 'alias': }
 
-apache::vhost { 'pv':
-  serveraliases => 'pv.io',
-  docroot       => '/var/www/default-sites/pv',
+apache::vhost { 'dashboard.pv':
+  serveraliases => 'pv.io pv',
+  docroot       => '/var/www/default-sites/dashboard',
   template      => '/vagrant/provision/lib/conf/vhost.conf.erb',
 }
 
