@@ -68,7 +68,13 @@ Once Vagrant is installed you'll want three plugins to update your local hosts a
 
 ```vagrant plugin install vagrant-ghost```
 
+or
+
+```vagrant plugin install landrush```
+
 ```vagrant plugin install vagrant-triggers```
+
+Installing landrush will allow you to use any domain name with the "pv" toplevel domain negating the need for extr setups, reloads, etc. With Landrush you can safely ignore anything below about pv-hosts and simply set any virtualhost to use a subdomain of pv.
 
 ### Launch your VM
 
