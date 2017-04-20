@@ -49,7 +49,7 @@ If you find any issues, please don't hesitate to submit a [pull request](https:/
 
 ### Default domains
 
-* pv - Default menu
+* dashboard.pv - Default menu
 * phpmyadmin.pv - phpMyAdmin
 * replacedb.pv - Search Replace DB
 * core.wordpress.pv - WordPress development (for core dev)
@@ -94,7 +94,7 @@ Installing landrush will allow you to use any domain name with the "pv" toplevel
 
 The following websites come pre-configured in the system:
 
-* [Default menu](http://pv)
+* [Default menu](http://dashboard.pv)
 * WordPress (last major release) at [http://legacy.wordpress.pv](http://legacy.wordpress.pv)
 * WordPress (latest stable release) at [http://stable.wordpress.pv](http://stable.wordpress.pv)
 * WordPress Trunk at [http://trunk.wordpress.pv](http://trunk.wordpress.pv)
@@ -102,7 +102,7 @@ The following websites come pre-configured in the system:
 * Search Replace DB [https://replacedb.pv](https://replacedb.pv)
 * phpMyAdmin [http://phpmyadmin.pv](http://phpmyadmin.pv)
 * WebGrind [http://webgrind.pv](http://webgrind.pv)
-* MailHog [http://pv:8025](http://pv:8025)
+* MailHog [http://mailhog.pv:8025](http://mailhug.pv:8025)
 
 *Note: WordPress Core dev is taken from git://develop.git.wordpress.org/. Only the src folder is mapped. You can manually set up a build site if desired.
 
@@ -236,7 +236,7 @@ You can access the database via ssh tunnel into the machine using the *ouroboros
 
 #### Postfix Configuration
 
-Postfix is configured and set to use your host computer as a mail relay. To receive messages you can use the built in [MailHog installation](http://pv:8025) (this will prevent your real SMTP mail server and mailbox from getting too much abuse).
+Postfix is configured and set to use your host computer as a mail relay. To receive messages you can use the built in [MailHog installation](http://mailhog.pv:8025) (this will prevent your real SMTP mail server and mailbox from getting too much abuse).
 
 #### node.js
 
