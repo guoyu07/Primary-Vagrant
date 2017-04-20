@@ -1,4 +1,6 @@
 pv.io
+dashboard.pv
+mailhog.pv
 phpmyadmin.pv
 replacedb.pv
 stable.wordpress.pv
