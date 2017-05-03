@@ -24,7 +24,7 @@
 	url = https://github.com/joshbetz/puppet-wp.git
 [submodule "provision/modules/apache"]
 	path = provision/modules/apache
-	url = https://github.com/example42/puppet-apache.git
+url=https://github.com/ChrisWiegman/puppet-apache.git
 [submodule "provision/modules/wget"]
 	path = provision/modules/wget
 	url = https://github.com/maestrodev/puppet-wget.git
