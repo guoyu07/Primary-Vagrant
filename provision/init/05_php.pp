@@ -10,9 +10,9 @@ class { '::php':
     memcache     => { },
     mbstring     => { },
     mcrypt       => { },
+    redis        => { },
     xdebug       => {
       zend            => true,
-      provider        => 'pecl',
       settings        => {
         'XDEBUG/xdebug.trace_enable_trigger'      => '1',
         'XDEBUG/xdebug.trace_output_dir'          => '/vagrant/user-data/debug',
@@ -43,16 +43,20 @@ class { '::php':
     'PHP/upload_max_filesize' => '100M',
     'PHP/max_execution_time'  => '90',
   },
-}
-
-exec { 'php_codesniffer':
-  command => 'pear install PHP_CodeSniffer',
-  require => Class['php'],
-  creates => '/usr/bin/phpcs',
-}
-
-exec { 'wp_code_standards':
-  command => 'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /var/wpcs && phpcs --config-set installed_paths /var/wpcs',
-  require => Class['php'],
-  creates => '/var/wpcs/README.md',
-}
+} ->
+  exec { 'php_codesniffer':
+    command =>
+      'git clone https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && sudo ln -s /var/phpcs/scripts/phpcs /usr/bin/phpcs && sudo ln -s /var/phpcs/scripts/phpcbf /usr/bin/phpcbf',
+    require => Class['php'],
+    creates => '/usr/bin/phpcs',
+  } ->
+  exec { 'wp_code_standards':
+    command =>
+      'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /var/wpcs && phpcs --config-set installed_paths /var/wpcs',
+    require => Class['php'],
+    creates => '/var/wpcs/README.md',
+  } ->
+  exec { 'disable_php_mysql':
+    command => 'phpdismod mysql',
+    require => Class['php'],
+  }

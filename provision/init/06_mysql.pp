@@ -1,4 +1,12 @@
-class { 'mysql::server': }
+class { 'mysql::server':
+  root_password           => 'password',
+  remove_default_accounts => true,
+  override_options        => {
+    mysqld => {
+      'sql_mode' => 'NO_ENGINE_SUBSTITUTION',
+    }
+  }
+}
 
 mysql_database { 'stable.wordpress.pv':
   ensure  => 'present',
@@ -47,5 +55,19 @@ mysql_grant { 'username@localhost/*.*':
   privileges => ['ALL'],
   table      => '*.*',
   user       => 'username@localhost',
+  require    => Class['mysql::server'],
+}
+
+mysql_user { 'backup@localhost':
+  ensure        => 'present',
+  require       => Class['mysql::server']
+}
+
+mysql_grant { 'backup@localhost/*.*':
+  ensure     => 'present',
+  options    => ['GRANT'],
+  privileges => ['SELECT, LOCK TABLES, SHOW VIEW, EVENT, TRIGGER'],
+  table      => '*.*',
+  user       => 'backup@localhost',
   require    => Class['mysql::server'],
 }

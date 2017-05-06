@@ -1,5 +1,8 @@
-mailcatcher.pv
+pv.io
+dashboard.pv
+mailhog.pv
 phpmyadmin.pv
+database.pv
 replacedb.pv
 stable.wordpress.pv
 core.wordpress.pv

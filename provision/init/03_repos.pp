@@ -1,13 +1,13 @@
 vcsrepo { '/var/www/default-sites/wordpress/legacy/htdocs/wordpress':
   ensure   => present,
-  revision => '4.4.4',
+  revision => '4.6.5',
   provider => git,
   source   => 'https://github.com/WordPress/WordPress.git',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/stable/htdocs/wordpress':
   ensure   => present,
-  revision => '4.5.3',
+  revision => '4.7.4',
   provider => git,
   source   => 'https://github.com/WordPress/WordPress.git',
 }
@@ -26,7 +26,7 @@ vcsrepo { '/var/www/default-sites/wordpress/core/wordpress':
 
 vcsrepo { '/var/www/default-sites/phpmyadmin/phpmyadmin':
   ensure   => present,
-  revision => 'RELEASE_4_6_3',
+  revision => 'RELEASE_4_7_0',
   provider => git,
   source   => 'https://github.com/phpmyadmin/phpmyadmin.git',
 } ->
@@ -35,6 +35,13 @@ file { '/var/www/default-sites/phpmyadmin/phpmyadmin/config.inc.php':
   owner  => 'www-data',
   group  => 'vagrant',
   target => '/var/www/default-sites/phpmyadmin/config.inc.php',
+} -> exec { 'install_phpmyadmin':
+  command     => '/usr/local/bin/composer update',
+  environment => ["COMPOSER_HOME=/home/vagrant"],
+  cwd         => '/var/www/default-sites/phpmyadmin/phpmyadmin/',
+  user        => vagrant,
+  group       => vagrant,
+  require     => Class['php'],
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/content/plugins/any-ipsum':

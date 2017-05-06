@@ -1,9 +1,5 @@
 class { 'apt': }
 
-package { 'git':
-  ensure => 'installed'
-}
-
 package { 'vim':
   ensure => 'installed'
 }
@@ -20,13 +16,25 @@ package { 'memcached':
   ensure => 'installed'
 }
 
+package { 'redis-server':
+  ensure => 'installed'
+}
+
+package { 'python' :
+  ensure => 'installed'
+}
+
+package { 'graphviz' :
+  ensure => 'installed'
+}
+
 class { 'ohmyzsh': }
 
 ohmyzsh::install { 'vagrant': }
 
-class { 'nodejs':
-  version      => 'latest',
-  make_install => false,
+class { 'nvm':
+  user         => 'vagrant',
+  install_node => '7.2.1',
 }
 
 file { '.zshrc':
@@ -35,11 +43,4 @@ file { '.zshrc':
   owner   => 'vagrant',
   group   => 'vagrant',
   source  => '/vagrant/provision/lib/conf/.zshrc',
-}
-
-file { 'sudoers':
-  path    => '/etc/sudoers',
-  ensure  => file,
-  mode    => '440',
-  source  => '/vagrant/provision/lib/conf/sudoers',
 }
