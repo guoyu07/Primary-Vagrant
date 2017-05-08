@@ -13,5 +13,11 @@ This server configuration is designed for development use only. Please don't put
 Changelog
 ---------
 
-* 4.0 (6 May 17)
-A complete overhaul with new features, better documentation and more. *This WILL require a destroy of an existing environment before upgrading*
+#### 4.0 (6 May 17)
+* A complete overhaul with new features, better documentation and more. *This WILL require a destroy of an existing environment before upgrading*
+
+
+#### 4.0.1 (8 May)
+* Fix PHPCS paths
+* Fixed issue with mysql module (Credit @crazyjaco)
+
