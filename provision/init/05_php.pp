@@ -50,7 +50,7 @@ exec { 'disable_php_mysql':
 } ->
 exec { 'php_codesniffer':
   command =>
-    'git clone https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && sudo ln -s /var/phpcs/bin/phpcs /usr/bin/phpcs && sudo ln -s /var/phpcs/bin/phpcbf /usr/bin/phpcbf'
+    'git clone -b 2.9.0 https://github.com/squizlabs/PHP_CodeSniffer.git /var/phpcs && sudo ln -s /var/phpcs/scripts/phpcs /usr/bin/phpcs && sudo ln -s /var/phpcs/scripts/phpcbf /usr/bin/phpcbf'
   ,
   require => Class['php'],
   creates => '/usr/bin/phpcs',
