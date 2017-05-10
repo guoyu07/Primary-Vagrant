@@ -44,7 +44,13 @@ Changelog
 * A complete overhaul with new features, better documentation and more. *This WILL require a destroy of an existing environment before upgrading*
 
 
-#### 4.0.1 (8 May)
+#### 4.0.1 (8 May 17)
 * Fix PHPCS paths
 * Fixed issue with mysql module (Credit @crazyjaco)
+* Upgrade upstream Puppet modules
+
+#### 4.0.1 (10 May 17)
+* Downgrade PHPCS to 2.9 for compatibility with WordPress Coding Standards.
+* Add Quickstart information
+* Upgrade upstream Puppet modules
 
