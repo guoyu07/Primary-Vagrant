@@ -10,6 +10,33 @@ Important
 
 This server configuration is designed for development use only. Please don't put it on a production server as some of these settings would cause serious security issues.
 
+Quickstart
+----------
+
+1. Install [VirtualBox](http://virtualbox.org), and the [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads) for your environment.
+
+2. Install [Vagrant](http://vagrantup.com).
+
+3. Once Vagrant is installed you can install the three optional plugins as discussed on the [Requirements](requirements) page.
+
+    ```vagrant plugin install vagrant-vbguest```
+
+    ```vagrant plugin install vagrant-triggers```
+
+    ```vagrant plugin install landrush```
+
+4. Clone Primary Vagrant (and it's submodules) onto your local machine:
+
+    ```$ git clone --recursive git@github.com:ChrisWiegman/Primary-Vagrant.git Primary\ Vagrant```
+
+5. Change into the new directory with `cd Primary\ Vagrant`
+
+6. Start the Vagrant environment with `vagrant up`
+	- Be patient as the magic happens. This could take a while on the first run as your host machine downloads the base box and Primary Vagrant downloads and installs all the software you'll need.
+	- Pay attention during execution as an administrator or `su` ***password may be required*** to properly modify the hosts file on your local machine.
+
+7. Navigate to [http://dashboard.pv](http://dashboard.pv) to get started.
+
 Changelog
 ---------
 
