@@ -49,8 +49,11 @@ Changelog
 * Fixed issue with mysql module (Credit @crazyjaco)
 * Upgrade upstream Puppet modules
 
-#### 4.0.1 (10 May 17)
+#### 4.0.2 (10 May 17)
 * Downgrade PHPCS to 2.9 for compatibility with WordPress Coding Standards.
 * Add Quickstart information
 * Upgrade upstream Puppet modules
+
+#### 4.0.3 (14 May 17)
+* Update upstream Puppet modules
 
