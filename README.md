@@ -40,20 +40,21 @@ Quickstart
 Changelog
 ---------
 
-#### 4.0 (6 May 17)
-* A complete overhaul with new features, better documentation and more. *This WILL require a destroy of an existing environment before upgrading*
+#### 4.0.4 (17 May 17)
+* Update WordPress versions to 4.6.6 for Legacy and 4.7.5 for Stable
 
-
-#### 4.0.1 (8 May 17)
-* Fix PHPCS paths
-* Fixed issue with mysql module (Credit @crazyjaco)
-* Upgrade upstream Puppet modules
+#### 4.0.3 (14 May 17)
+* Update upstream Puppet modules
 
 #### 4.0.2 (10 May 17)
 * Downgrade PHPCS to 2.9 for compatibility with WordPress Coding Standards.
 * Add Quickstart information
 * Upgrade upstream Puppet modules
 
-#### 4.0.3 (14 May 17)
-* Update upstream Puppet modules
+#### 4.0.1 (8 May 17)
+* Fix PHPCS paths
+* Fixed issue with mysql module (Credit @crazyjaco)
+* Upgrade upstream Puppet modules
 
+#### 4.0 (6 May 17)
+* A complete overhaul with new features, better documentation and more. *This WILL require a destroy of an existing environment before upgrading*
