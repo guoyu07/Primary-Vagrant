@@ -17,7 +17,7 @@ Quickstart
 
 2. Install [Vagrant](http://vagrantup.com).
 
-3. Once Vagrant is installed you can install the three optional plugins as discussed on the [Requirements](requirements) page.
+3. Once Vagrant is installed you can install the three optional plugins as discussed on the [Requirements](https://github.com/ChrisWiegman/Primary-Vagrant/wiki/Requirements) page.
 
     ```vagrant plugin install vagrant-vbguest```
 
