@@ -56,6 +56,12 @@ vcsrepo { '/var/www/default-sites/wordpress/content/plugins/debug-bar':
   source   => 'http://plugins.svn.wordpress.org/debug-bar/trunk',
 }
 
+vcsrepo { '/var/www/default-sites/wordpress/content/plugins/wp-inspect':
+  ensure   => latest,
+  provider => svn,
+  source   => 'http://plugins.svn.wordpress.org/wp-inspect/trunk',
+}
+
 vcsrepo { '/var/www/default-sites/wordpress/content/plugins/heartbeat-control':
   ensure   => latest,
   provider => git,
