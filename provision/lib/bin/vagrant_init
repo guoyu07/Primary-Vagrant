@@ -26,8 +26,8 @@ if [ ! -d "default-sites/wordpress/content/plugins/any-ipsum/.git" ]; then
 fi
 
 # WordPress Plugin Debug Bar
-if [ ! -d "default-sites/wordpress/content/plugins/debug-bar/.git" ]; then
-  git clone https://github.com/wp-mirrors/debug-bar.git default-sites/wordpress/content/plugins/debug-bar
+if [ ! -d "default-sites/wordpress/content/plugins/debug-bar/.svn" ]; then
+  svn checkout http://plugins.svn.wordpress.org/debug-bar/trunk default-sites/wordpress/content/plugins/debug-bar
 fi
 
 # WordPress Plugin Heartbeat Control
