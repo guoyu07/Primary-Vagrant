@@ -17,7 +17,7 @@ Quickstart
 
 2. Install [Vagrant](http://vagrantup.com).
 
-3. Once Vagrant is installed you can install the three optional plugins as discussed on the [Requirements](requirements) page.
+3. Once Vagrant is installed you can install the three optional plugins as discussed on the [Requirements](https://github.com/ChrisWiegman/Primary-Vagrant/wiki/Requirements) page.
 
     ```vagrant plugin install vagrant-vbguest```
 
@@ -39,6 +39,12 @@ Quickstart
 
 Changelog
 ---------
+
+#### 4.1 (22 May 17)
+* Add WP Inspect plugin to aid in theme and plugin development
+* Switch Debug Bar plugin to SVN repo to ensure timely updates
+* Fixed bug in site generator due to obsolete file list (credit @Alex-Keyes)
+* Fixed bug in Readme for proper link to Wiki (credit @chuckreynolds)
 
 #### 4.0.4 (17 May 17)
 * Update WordPress versions to 4.6.6 for Legacy and 4.7.5 for Stable

@@ -204,7 +204,6 @@ if ( isset( $options['create-site'] ) ) {
 	$vhost_config .= "  directory                       => '/var/www/" . $options['name'] . "/" . $options['apacheroot'] . "'," . PHP_EOL;
 	$vhost_config .= "  directory_allow_override        => 'All'," . PHP_EOL;
 	$vhost_config .= "  ssl                             => true," . PHP_EOL;
-	$vhost_config .= "  template                        => '/vagrant/provision/lib/conf/vhost.conf.erb'" . PHP_EOL;
 	$vhost_config .= "}" . PHP_EOL;
 
 	// Only add database information if we need to.
