@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.1.1 (24 May 17)
+* Update upstream Puppet modules
+
 #### 4.1 (22 May 17)
 * Add WP Inspect plugin to aid in theme and plugin development
 * Switch Debug Bar plugin to SVN repo to ensure timely updates
