@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.1.2 (24 May 17)
+* Fixed an update caused by a bad quote
+
 #### 4.1.1 (24 May 17)
 * Update upstream Puppet modules
 
