@@ -40,6 +40,11 @@ Quickstart
 Changelog
 ---------
 
+#### 4.1.3 (31 May 17)
+* Updated default NodeJS version (8.0.0)
+* Fixed URL for wp-cli download to avoid extra 301 redirects
+* Update upstream Puppet modules
+
 #### 4.1.2 (24 May 17)
 * Fixed an update caused by a bad quote
 
