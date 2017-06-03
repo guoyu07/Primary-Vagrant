@@ -84,6 +84,7 @@ define( 'WP_DEBUG_DISPLAY', true );
 define( 'SCRIPT_DEBUG', true );
 define( 'SAVEQUERIES', true );
 define( 'WP_LOCAL_DEV', true );
+define( 'JETPACK_DEV_DEBUG', true );
 
 define( 'WP_AUTO_UPDATE_CORE', false );
 
