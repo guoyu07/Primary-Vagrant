@@ -40,6 +40,11 @@ Quickstart
 Changelog
 ---------
 
+#### 4.2 (8 June 17)
+* Define JETPACK_DEV_DEBUG for default sites to make it easier to keep plugins and themes under development compatible with Jetpack.
+* Update WordPress versions to 4.8 for stable and 4.7.5 for legacy.
+* Update PhpMyAdmin to 4.7.1
+
 #### 4.1.3 (31 May 17)
 * Updated default NodeJS version (8.0.0)
 * Fixed URL for wp-cli download to avoid extra 301 redirects
