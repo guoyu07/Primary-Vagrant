@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.2.1
+* Update default NodeJS version (8.1.0)
+
 #### 4.2 (8 June 17)
 * Define JETPACK_DEV_DEBUG for default sites to make it easier to keep plugins and themes under development compatible with Jetpack.
 * Update WordPress versions to 4.8 for stable and 4.7.5 for legacy.
