@@ -1,0 +1,2 @@
+config.vm.synced_folder "default-sites", "/var/www/default-sites", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
+config.vm.synced_folder "user-data/debug", "/vagrant/user-data/debug", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]

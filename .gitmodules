@@ -1,90 +1,39 @@
-[submodule "modules/apache"]
-	path = modules/apache
-	url = git@github.com:example42/puppet-apache.git
-[submodule "modules/apt"]
-	path = modules/apt
-	url = git@github.com:puppetlabs/puppetlabs-apt.git
-[submodule "modules/concat"]
-	path = modules/concat
-	url = git@github.com:puppetlabs/puppetlabs-concat.git
-[submodule "modules/php"]
-	path = modules/php
-	url = git@github.com:example42/puppet-php.git
-[submodule "modules/puppi"]
-	path = modules/puppi
-	url = git@github.com:example42/puppi.git
-[submodule "modules/stdlib"]
-	path = modules/stdlib
-	url = git@github.com:puppetlabs/puppetlabs-stdlib.git
-[submodule "modules/mysql"]
-	path = modules/mysql
-	url = git@github.com:puppetlabs/puppetlabs-mysql.git
-[submodule "sites/Search-Replace-DB"]
-	path = sites/Search-Replace-DB
-	url = git@github.com:interconnectit/Search-Replace-DB.git
-[submodule "modules/phpunit"]
-	path = modules/phpunit
-	url = git@github.com:ChrisWiegman/puppet-phpunit.git
-[submodule "modules/wp-cli"]
-	path = modules/wp-cli
-	url = git@github.com:ChrisWiegman/puppet-wpcli.git
-[submodule "modules/postfix"]
-	path = modules/postfix
-	url = git@github.com:Aethylred/puppet-postfix.git
-[submodule "modules/augeas"]
-	path = modules/augeas
-	url = git@github.com:camptocamp/puppet-augeas.git
-[submodule "sites/webgrind"]
-	path = sites/webgrind
-	url = git@github.com:jokkedk/webgrind.git
-[submodule "modules/ohmyzsh"]
-	path = modules/ohmyzsh
-	url = git@github.com:acme/puppet-acme-oh-my-zsh.git
-[submodule "sites/wordpress/stable/wordpress"]
-	path = sites/wordpress/stable/wordpress
-	url = git@github.com:WordPress/WordPress.git
-[submodule "sites/wordpress/trunk/wordpress"]
-	path = sites/wordpress/trunk/wordpress
-	url = git@github.com:WordPress/WordPress.git
-[submodule "modules/mailcatcher"]
-	path = modules/mailcatcher
-	url = git@github.com:ChrisWiegman/puppet-mailcatcher.git
-[submodule "sites/wordpress/core"]
-	path = sites/wordpress/core
-	url = git://develop.git.wordpress.org/
-[submodule "sites/phpmyadmin/phpmyadmin"]
-	path = sites/phpmyadmin/phpmyadmin
-	url = git@github.com:phpmyadmin/phpmyadmin.git
-[submodule "sites/wordpress/legacy/wordpress"]
-	path = sites/wordpress/legacy/wordpress
-	url = git@github.com:WordPress/WordPress.git
-[submodule "sites/wordpress/content/plugins/debug-bar"]
-	path = sites/wordpress/content/plugins/debug-bar
-	url = git@github.com:wp-mirrors/debug-bar.git
-[submodule "sites/wordpress/legacy/htdocs/wordpress"]
-	path = sites/wordpress/legacy/htdocs/wordpress
-	url = git@github.com:WordPress/WordPress.git
-[submodule "sites/wordpress/stable/htdocs/wordpress"]
-	path = sites/wordpress/stable/htdocs/wordpress
-	url = git@github.com:WordPress/WordPress.git
-[submodule "sites/wordpress/trunk/htdocs/wordpress"]
-	path = sites/wordpress/trunk/htdocs/wordpress
-	url = git@github.com:WordPress/WordPress.git
-[submodule "sites/wordpress/content/plugins/whats-running"]
-	path = sites/wordpress/content/plugins/whats-running
-	url = git@github.com:szepeviktor/whats-running.git
-[submodule "sites/wordpress/content/plugins/query-monitor"]
-	path = sites/wordpress/content/plugins/query-monitor
-	url = git@github.com:johnbillion/query-monitor.git
-[submodule "sites/wordpress/wptest"]
-	path = sites/wordpress/wptest
-	url = git@github.com:manovotny/wptest.git
-[submodule "modules/composer"]
-	path = modules/composer
-	url = git@github.com:willdurand/puppet-composer.git
-[submodule "modules/wget"]
-	path = modules/wget
-	url = git@github.com:maestrodev/puppet-wget.git
-[submodule "modules/nodejs"]
-	path = modules/nodejs
-	url = git://github.com/willdurand/puppet-nodejs.git
+[submodule "provision/modules/concat"]
+	path = provision/modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat.git
+[submodule "provision/modules/puppi"]
+	path = provision/modules/puppi
+	url = https://github.com/example42/puppi.git
+[submodule "provision/modules/stdlib"]
+	path = provision/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "provision/modules/mysql"]
+	path = provision/modules/mysql
+	url = https://github.com/puppetlabs/puppetlabs-mysql.git
+[submodule "provision/modules/vcsrepo"]
+	path = provision/modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
+[submodule "provision/modules/inifile"]
+	path = provision/modules/inifile
+	url = https://github.com/puppetlabs/puppetlabs-inifile.git
+[submodule "provision/modules/wp"]
+	path = provision/modules/wp
+	url = https://github.com/joshbetz/puppet-wp.git
+[submodule "provision/modules/apache"]
+	path = provision/modules/apache
+url=https://github.com/ChrisWiegman/puppet-apache.git
+[submodule "provision/modules/wget"]
+	path = provision/modules/wget
+	url = https://github.com/maestrodev/puppet-wget.git
+[submodule "provision/modules/php"]
+	path = provision/modules/php
+url=https://github.com/voxpupuli/puppet-php.git
+[submodule "provision/modules/apt"]
+	path = provision/modules/apt
+url=https://github.com/puppetlabs/puppetlabs-apt.git
+[submodule "provision/modules/mailhog"]
+	path = provision/modules/mailhog
+	url = https://github.com/ftaeger/ftaeger-mailhog.git
+[submodule "provision/modules/nvm"]
+	path = provision/modules/nvm
+	url = https://github.com/artberri/puppet-nvm.git

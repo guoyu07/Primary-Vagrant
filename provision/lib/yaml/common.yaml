@@ -1,0 +1,8 @@
+php::globals::php_version: '7.1'
+php::repo::ubuntu::ppa: 'ondrej/php'
+php::fpm::pools:
+  www:
+    listen: '127.0.0.1:9042'
+    listen_owner: 'www-data'
+    listen_group: 'vagrant'
+    listen_mode: '0666'
