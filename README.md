@@ -40,6 +40,10 @@ Quickstart
 Changelog
 ---------
 
+#### 4.2.2 (2 July 17)
+* Update default NodeJS version (8.1.2)
+* Update upstream Puppet modules
+
 #### 4.2.1 (16 June 17)
 * Update default NodeJS version (8.1.2)
 * Update upstream Puppet modules
