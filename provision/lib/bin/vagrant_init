@@ -2,17 +2,17 @@
 
 # WordPress Trunk
 if [ ! -d "default-sites/wordpress/trunk/htdocs/wordpress/.git" ]; then
-  git clone https://github.com/WordPress/WordPress.git default-sites/wordpress/trunk/htdocs/wordpress
+  git clone git://core.git.wordpress.org/ default-sites/wordpress/trunk/htdocs/wordpress
 fi
 
 # WordPress Stable
 if [ ! -d "default-sites/wordpress/stable/htdocs/wordpress/.git" ]; then
-  git clone https://github.com/WordPress/WordPress.git default-sites/wordpress/stable/htdocs/wordpress
+  git clone git://core.git.wordpress.org/ default-sites/wordpress/stable/htdocs/wordpress
 fi
 
 # WordPress Legacy
 if [ ! -d "default-sites/wordpress/legacy/htdocs/wordpress/.git" ]; then
-  git clone https://github.com/WordPress/WordPress.git default-sites/wordpress/legacy/htdocs/wordpress
+  git clone git://core.git.wordpress.org/ default-sites/wordpress/legacy/htdocs/wordpress
 fi
 
 # WordPress Core

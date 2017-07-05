@@ -2,20 +2,20 @@ vcsrepo { '/var/www/default-sites/wordpress/legacy/htdocs/wordpress':
   ensure   => present,
   revision => '4.7.5',
   provider => git,
-  source   => 'https://github.com/WordPress/WordPress.git',
+  source   => 'git://core.git.wordpress.org/',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/stable/htdocs/wordpress':
   ensure   => present,
   revision => '4.8',
   provider => git,
-  source   => 'https://github.com/WordPress/WordPress.git',
+  source   => 'git://core.git.wordpress.org/',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/trunk/htdocs/wordpress':
   ensure   => latest,
   provider => git,
-  source   => 'https://github.com/WordPress/WordPress.git',
+  source   => 'git://core.git.wordpress.org/',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/core/wordpress':
@@ -26,7 +26,7 @@ vcsrepo { '/var/www/default-sites/wordpress/core/wordpress':
 
 vcsrepo { '/var/www/default-sites/phpmyadmin/phpmyadmin':
   ensure   => present,
-  revision => 'RELEASE_4_7_1',
+  revision => 'RELEASE_4_7_2',
   provider => git,
   source   => 'https://github.com/phpmyadmin/phpmyadmin.git',
 } ->
