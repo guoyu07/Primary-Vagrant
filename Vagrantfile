@@ -160,7 +160,7 @@ Vagrant.configure("2") do |root|
 	    if defined? VagrantPlugins::Triggers
 
 	        config.trigger.before :up do
-	            system('./provision/lib/bin/vagrant_init')
+	            system('./provision/lib/bin/vagrant_init.sh')
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-init.sh')) then
 	                system('./user-data/pv-init.sh')
 	            end
@@ -171,7 +171,7 @@ Vagrant.configure("2") do |root|
 	        end
 
 	        config.trigger.before :halt do
-	            run_remote "bash /vagrant/provision/lib/bin/vagrant_halt"
+	            run_remote "bash /vagrant/provision/lib/bin/vagrant_halt.sh"
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-halt.sh')) then
 	                system('./user-data/pv-halt.sh')
 	            end
@@ -182,7 +182,7 @@ Vagrant.configure("2") do |root|
 	        end
 
 	        config.trigger.before :suspend do
-	            run_remote "bash /vagrant/provision/lib/bin/vagrant_suspend"
+	            run_remote "bash /vagrant/provision/lib/bin/vagrant_suspend.sh"
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-suspend.sh')) then
 	                system('./user-data/pv-suspend.sh')
 	            end
@@ -193,7 +193,7 @@ Vagrant.configure("2") do |root|
 	        end
 
 	        config.trigger.before :destroy do
-	            run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy"
+	            run_remote "bash /vagrant/provision/lib/bin/vagrant_destroy.sh"
 	            if File.exists?(File.join(vagrant_dir,'user-data', 'pv-destroy.sh')) then
 	                system('./user-data/pv-destroy.sh')
 	            end
