@@ -40,8 +40,15 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3 (5 July 17)
+* Update upstream Puppet modules
+* Update PhpMyAdmin
+* Switch WordPress repos to git://core.git.wordpress.org/
+* Added .sh extension to shell scripts where appropriate
+* Renamed "init" folder to the more appropriate "manifests"
+
 #### 4.2.2 (2 July 17)
-* Update default NodeJS version (8.1.2)
+* Update default NodeJS version (8.1.3)
 * Update upstream Puppet modules
 
 #### 4.2.1 (16 June 17)
