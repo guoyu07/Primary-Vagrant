@@ -14,5 +14,5 @@ export HOME=/home/vagrant
 if [ -f /vagrant/user-data/vagrant_destroy_custom ]; then
 	/vagrant/user-data/vagrant_destroy_custom
 else
-	/vagrant/provision/lib/bin/db_backup
+	/vagrant/provision/lib/bin/db_backup.sh
 fi
