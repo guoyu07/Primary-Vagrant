@@ -78,10 +78,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias xon="xdebug_on"
-alias xoff="xdebug_off"
-alias xlon="xdebug_listen_on"
-alias xloff="xdebug_listen_off"
+alias xon="xdebug_on.sh"
+alias xoff="xdebug_off.sh"
+alias xlon="xdebug_listen_on.sh"
+alias xloff="xdebug_listen_off.sh"
 alias plugins="cd /var/www/default-sites/wordpress/content/plugins"
 alias themes="cd /var/www/default-sites/wordpress/content/themes"
 
