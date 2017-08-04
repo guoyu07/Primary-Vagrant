@@ -53,13 +53,13 @@ vcsrepo { '/var/www/default-sites/wordpress/content/plugins/any-ipsum':
 vcsrepo { '/var/www/default-sites/wordpress/content/plugins/debug-bar':
   ensure   => latest,
   provider => svn,
-  source   => 'http://plugins.svn.wordpress.org/debug-bar/trunk',
+  source   => 'https://plugins.svn.wordpress.org/debug-bar/trunk',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/content/plugins/wp-inspect':
   ensure   => latest,
   provider => svn,
-  source   => 'http://plugins.svn.wordpress.org/wp-inspect/trunk',
+  source   => 'https://plugins.svn.wordpress.org/wp-inspect/trunk',
 }
 
 vcsrepo { '/var/www/default-sites/wordpress/content/plugins/heartbeat-control':

@@ -27,12 +27,12 @@ fi
 
 # WordPress Plugin Debug Bar
 if [ ! -d "default-sites/wordpress/content/plugins/debug-bar/.svn" ]; then
-  svn checkout http://plugins.svn.wordpress.org/debug-bar/trunk default-sites/wordpress/content/plugins/debug-bar
+  svn checkout https://plugins.svn.wordpress.org/debug-bar/trunk default-sites/wordpress/content/plugins/debug-bar
 fi
 
 # WordPress Plugin WP Inspect
 if [ ! -d "default-sites/wordpress/content/plugins/wp-inspect/.svn" ]; then
-  svn checkout http://plugins.svn.wordpress.org/wp-inspect/trunk default-sites/wordpress/content/plugins/wp-inspect
+  svn checkout https://plugins.svn.wordpress.org/wp-inspect/trunk default-sites/wordpress/content/plugins/wp-inspect
 fi
 
 # WordPress Plugin Heartbeat Control
