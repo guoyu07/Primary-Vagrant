@@ -40,6 +40,10 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.2 (04 August 17)
+* Update upstream Puppet modules
+* Update WordPress Stable (4.8.1)
+
 #### 4.3.1  (22 July 17)
 * Upgrade default NodeJS version (8.2.1)
 * Update upstream Puppet modules
