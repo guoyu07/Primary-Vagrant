@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.3 (04 August 17)
+* Switch to https for WordPress.org plugin repositories
+
 #### 4.3.2 (04 August 17)
 * Update upstream Puppet modules
 * Update WordPress Stable (4.8.1)
