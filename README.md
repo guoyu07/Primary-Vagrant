@@ -42,6 +42,7 @@ Changelog
 
 #### 4.3.4
 * Upgrade default NodeJS version (8.3.0)
+* Update upstream Puppet modules
 
 #### 4.3.3 (04 August 17)
 * Switch to https for WordPress.org plugin repositories
