@@ -40,6 +40,11 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.4 (11 August 17)
+* Upgrade default NodeJS version (8.3.0)
+* Update upstream Puppet modules
+* Upgrade WordPress Coding Standards and PHP_CodeSniffer to current versions
+
 #### 4.3.3 (04 August 17)
 * Switch to https for WordPress.org plugin repositories
 
