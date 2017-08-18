@@ -132,9 +132,8 @@ Vagrant.configure("2") do |root|
 
 	    # Run the system setup on the first vagrant up.
 		config.vm.provision "puppet" do |puppet|
-			puppet.manifests_path    = "provision"
-			puppet.manifest_file     = "manifests"
-			puppet.module_path       = "provision/modules"
+			puppet.environment_path  = "provision"
+            puppet.environment       = "environment"
 			puppet.facter            = { "fqdn" => "pv" }
 			puppet.hiera_config_path = "provision/hiera.yaml"
 		end
