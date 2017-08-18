@@ -39,4 +39,4 @@ url=https://github.com/puppetlabs/puppetlabs-apt.git
 	url = https://github.com/ftaeger/ftaeger-mailhog.git
 [submodule "provision/modules/nvm"]
 	path = provision/modules/nvm
-	url = https://github.com/artberri/puppet-nvm.git
+url=https://github.com/ChrisWiegman/puppet-nvm.git
