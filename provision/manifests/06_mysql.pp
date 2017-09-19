@@ -10,36 +10,36 @@ class { 'mysql::server':
 
 mysql_database { 'stable.wordpress.pv':
   ensure  => 'present',
-  charset => 'utf8',
-  collate => 'utf8_general_ci',
+  charset => 'utf8mb4',
+  collate => 'utf8mb4_general_ci',
   require => Class['mysql::server'],
 }
 
 mysql_database { 'legacy.wordpress.pv':
   ensure  => 'present',
-  charset => 'utf8',
-  collate => 'utf8_general_ci',
+  charset => 'utf8mb4',
+  collate => 'utf8mb4_general_ci',
   require => Class['mysql::server'],
 }
 
 mysql_database { 'trunk.wordpress.pv':
   ensure  => 'present',
-  charset => 'utf8',
-  collate => 'utf8_general_ci',
+  charset => 'utf8mb4',
+  collate => 'utf8mb4_general_ci',
   require => Class['mysql::server'],
 }
 
 mysql_database { 'core.wordpress.pv':
   ensure  => 'present',
-  charset => 'utf8',
-  collate => 'utf8_general_ci',
+  charset => 'utf8mb4',
+  collate => 'utf8mb4_general_ci',
   require => Class['mysql::server'],
 }
 
 mysql_database { 'tests.core.wordpress.pv':
   ensure  => 'present',
-  charset => 'utf8',
-  collate => 'utf8_general_ci',
+  charset => 'utf8mb4',
+  collate => 'utf8mb4_general_ci',
   require => Class['mysql::server'],
 }
 
