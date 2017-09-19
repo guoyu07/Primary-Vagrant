@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.7 (18 September 17)
+* Update default database charsets to utf8mb4
+
 #### 4.3.6 (17 September 17)
 * Upgrade default NodeJS version (8.5.0)
 * Update upstream Puppet modules
