@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.8 (20 September 17)
+* Updated default WordPress versions (4.7.6 and 4.8.2)
+
 #### 4.3.7 (18 September 17)
 * Update default database charsets to utf8mb4
 
