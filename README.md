@@ -40,6 +40,9 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.11
+* Upgrade default NodeJS version (8.8.1)
+
 #### 4.3.10 (25 October 17)
 * Update upstream Puppet Modules
 * Upgrade default NodeJS version (8.8.0)
