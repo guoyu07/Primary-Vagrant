@@ -40,6 +40,10 @@ Quickstart
 Changelog
 ---------
 
+#### 4.3.12 (1 November 17)
+* Upgrade default NodeJS version (9.0.0)
+* Update PhpMyAdmin (4.7.5)
+
 #### 4.3.11 (31 October 17)
 * Upgrade default NodeJS version (8.8.1)
 * Update upstream Puppet Modules
