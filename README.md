@@ -41,7 +41,7 @@ Changelog
 ---------
 
 #### 4.3.13
-* Upgrade default NodeJS version (9.1.0)
+* Upgrade default NodeJS version (9.2.0)
 * Update upstream Puppet Modules
 * Update default WordPress version for 4.9
 
