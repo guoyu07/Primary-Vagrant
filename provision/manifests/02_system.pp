@@ -34,7 +34,7 @@ ohmyzsh::install { 'vagrant': }
 
 class { 'nvm':
   user         => 'vagrant',
-  install_node => '9.0.0',
+  install_node => '9.2.0',
 }
 
 file { '.zshrc':

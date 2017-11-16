@@ -40,6 +40,11 @@ Quickstart
 Changelog
 ---------
 
+#### 4.4 (16 November 17)
+* Upgrade default NodeJS version (9.2.0)
+* Update upstream Puppet Modules
+* Update default WordPress version for 4.9
+
 #### 4.3.12 (1 November 17)
 * Upgrade default NodeJS version (9.0.0)
 * Update PhpMyAdmin (4.7.5)
