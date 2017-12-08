@@ -40,7 +40,7 @@ Quickstart
 Changelog
 ---------
 
-#### 4.4.2
+#### 4.4.2 (8 December 17)
 * Update default PhpMyAdmin to 4.7.6
 * Update upstream Puppet modules
 
