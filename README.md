@@ -40,6 +40,10 @@ Quickstart
 Changelog
 ---------
 
+#### 4.4.2
+* Update default PhpMyAdmin to 4.7.6
+* Update upstream Puppet modules
+
 #### 4.4.1 (30 November 17)
 * Update default WordPress versions to 4.9.1 and 4.8.4
 * Update upstream Puppet modules
